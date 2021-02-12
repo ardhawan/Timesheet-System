@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   // import swal from "sweetalert";
   name: 'App',
@@ -50,11 +51,25 @@ export default {
         // console.log(response);
         let token = response.data.user.token;
         console.log(response.data.user.token);
-        localStorage.setItem("jwt", token);
         if (token) {
-          console.log("We are in");
-          // swal("Success", "Login Successful", "success");
-          this.$router.push("/sdisplay");
+          let decoded = VueJwtDecode.decode(token);
+          let userRole = decoded.role;
+          console.log(userRole);
+          localStorage.setItem("jwt", token);
+          this.error = false;
+          if(userRole == "student")
+          {
+            console.log("We are in the student portal");
+            this.$router.push("/sdisplay");
+          }
+          else if(userRole == "staff")
+          {
+            console.log("We are in the staff portal");
+          }
+          else if(userRole == "admin")
+          {
+            console.log("We are in the admin portal");
+          }
         }
       } catch (err) {
         console.log("We are out");
