@@ -31,7 +31,10 @@ const routes = [
   },
   {
     path: '/stdisplay',
-    component: StaffDisplay
+    component: StaffDisplay,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
