@@ -41,3 +41,14 @@ exports.getStudentDeadline = async (req, res) => {
     res.status(400).json({ err: err });
   }
 };   
+
+exports.getTeacherDeadline = async (req, res) => {
+  try {
+    let tcDeadline = await Deadline.find({ }, {teacherdeadline:1, _id:0});
+    console.log(tcDeadline);
+    console.log("Success we found the deadline");
+    res.status(201).json({ tcDeadline });
+  } catch (err) {
+    res.status(400).json({ err: err });
+  }
+};   
