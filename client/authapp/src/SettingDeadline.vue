@@ -2,6 +2,7 @@
   <div>
     <div class="nav-bar">
       <img src="./assets/logo-white.png">
+      <p class="back-btn">Back</p>
     </div>
     <div class="wrap">  
       <form @submit.prevent="setDeadline">  
@@ -67,6 +68,16 @@ export default {
   margin-top: -90px;
   background-color: #4365e2;
   display: flex;
+}
+
+.back-btn {
+    color: white;
+    font-size: 2.25rem;
+    position: absolute;
+    right: 0;
+    margin-right: 1.5rem;
+    margin-top: 2rem; 
+    cursor: pointer;
 }
 
 .wrap {
