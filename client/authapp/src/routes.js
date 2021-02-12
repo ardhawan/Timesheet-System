@@ -4,6 +4,7 @@ import App from './App'
 import StudentDisplay from './StudentDisplay.vue'
 import SettingDeadline from './SettingDeadline.vue'
 import StaffDisplay from './StaffDisplay.vue'
+import AdminDisplay from './AdminDisplay.vue'
 import testing from './testing.vue'
 
 Vue.use(Router);
@@ -35,7 +36,11 @@ const routes = [
     meta: {
       requiresAuth: true
     }
-  }
+  },
+  {
+    path: '/amdisplay',
+    component: AdminDisplay
+  },
 ];
 
 const router = new Router({
