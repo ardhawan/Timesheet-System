@@ -1,30 +1,30 @@
 <template>
-    <div>
-        <div class="nav-bar">
-            <img src="./assets/logo-white.png">
+  <div>
+    <div class="nav-bar">
+      <img src="./assets/logo-white.png">
+    </div>
+    <div class="wrap">  
+      <form @submit.prevent="setDeadline">  
+        <div class="form-group">
+          <label class="size-label" for="studentdeadline">Deadline Date For Student</label>
+          <input type="date" class="form-control-lg" id="studentdeadline" name="studentdeadline" v-model="details.studentdeadline">
         </div>
-        <div class="wrap">  
-            <form @submit.prevent="setDeadline">  
-                <div class="form-group">
-                    <label class="size-label" for="studentdeadline">Deadline Date For Student</label>
-                    <input type="date" class="form-control-lg" id="studentdeadline" name="studentdeadline" v-model="details.studentdeadline">
-                </div>
-                <div class="form-group">
-                    <label class="size-label" for="staffdeadline">Deadline Date For Staff</label>
-                    <input type="date" class="form-control-lg" id="staffdeadline" name="staffdeadline" v-model="details.staffdeadline">
-                </div>
+        <div class="form-group">
+          <label class="size-label" for="staffdeadline">Deadline Date For Staff</label>
+          <input type="date" class="form-control-lg" id="staffdeadline" name="staffdeadline" v-model="details.staffdeadline">
+        </div>
                 <!-- <router-link to='/studentdisplay'>Login</router-link> -->
                 <!-- <form v-on:submit.prevent="loginUser"> -->
-                <button type="submit" class="btn-group-lg">Submit</button>
-            </form>
-        </div>
-        <div class="error-message">
-            <p v-if="missing== true">Missing Input</p>
-        </div>
-        <div class="down-bar">
-            <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
-        </div>
+        <button type="submit" class="btn-group-lg">Submit</button>
+      </form>
     </div>
+    <div class="error-message">
+      <p v-if="missing== true">Missing Input</p>
+    </div>
+    <div class="down-bar">
+      <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
+    </div>
+  </div>
 </template>
 
 <script>
