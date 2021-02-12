@@ -28,7 +28,10 @@ const routes = [
   },
   {
     path: '/setdeadline',
-    component: SettingDeadline
+    component: SettingDeadline,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/stdisplay',
