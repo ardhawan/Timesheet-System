@@ -10,8 +10,8 @@
                     <input type="date" class="form-control-lg" id="studentdeadline" name="studentdeadline" v-model="details.studentdeadline">
                 </div>
                 <div class="form-group">
-                    <label class="size-label" for="teacherdeadline">Deadline Date For Teacher</label>
-                    <input type="date" class="form-control-lg" id="teacherdeadline" name="teacherdeadline" v-model="details.teacherdeadline">
+                    <label class="size-label" for="staffdeadline">Deadline Date For Staff</label>
+                    <input type="date" class="form-control-lg" id="staffdeadline" name="staffdeadline" v-model="details.staffdeadline">
                 </div>
                 <!-- <router-link to='/studentdisplay'>Login</router-link> -->
                 <!-- <form v-on:submit.prevent="loginUser"> -->
@@ -34,7 +34,7 @@ export default {
     return {
       details: {
         studentdeadline: "",
-        teacherdeadline: ""
+        staffdeadline: ""
       },
       missing: false
     };
@@ -47,7 +47,7 @@ export default {
         let deadlineresponse = await this.$http.post("/user/setd", this.details);
         // let token = response.data.user.token;
         console.log(deadlineresponse.data.userdl.studentdeadline);
-        console.log(deadlineresponse.data.userdl.teacherdeadline);
+        console.log(deadlineresponse.data.userdl.staffdeadline);
         if (deadlineresponse) {
           console.log("Success in setting deadline");
           this.missing = false;

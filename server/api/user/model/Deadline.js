@@ -6,9 +6,9 @@ const deadlineSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please Include The Student Deadline"]
   },
-  teacherdeadline: {
+  staffdeadline: {
     type: String,
-    required: [true, "Please Include The Teacher Deadline"]
+    required: [true, "Please Include The Staff Deadline"]
   },
 });
 

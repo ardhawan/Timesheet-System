@@ -18,8 +18,8 @@
           <textarea class="form-control-lg-left" id="studentmessage" name="studentmessage" v-model="message">The deadline for submission of timesheet is 15th</textarea>
         </div>
         <div class="form-group">
-          <label class="size-label-right" for="teachermessage">Message For Teacher</label>
-          <textarea class="form-control-lg-right" id="teachermessage" name="teachermessage">The deadline for submission of timesheet is 15th</textarea>
+          <label class="size-label-right" for="staffmessage">Message For Staff</label>
+          <textarea class="form-control-lg-right" id="staffmessage" name="staffmessage">The deadline for submission of timesheet is 15th</textarea>
         </div>
         <button type="submit" class="btn-group-lg">Submit</button>
       </form>
@@ -38,7 +38,7 @@ export default {
       emaildetails: {
         password: "",
         studentmessage: "",
-        teachermessage: ""
+        staffmessage: ""
       }
     };
   },
@@ -53,7 +53,7 @@ export default {
       //   let deadlineresponse = await this.$http.post("/user/setd", this.details);
       //   // let token = response.data.user.token;
       //   console.log(deadlineresponse.data.userdl.studentdeadline);
-      //   console.log(deadlineresponse.data.userdl.teacherdeadline);
+      //   console.log(deadlineresponse.data.userdl.staffdeadline);
       //   if (deadlineresponse) {
       //     console.log("Success in setting deadline");
       //     this.missing = false;

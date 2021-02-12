@@ -4,10 +4,10 @@ exports.setDeadline = async (req, res) => {
   try {
     const deadline = new Deadline({
       studentdeadline: req.body.studentdeadline,
-      teacherdeadline: req.body.teacherdeadline
+      staffdeadline: req.body.staffdeadline
     });
 
-    if (deadline.studentdeadline == ""|| deadline.teacherdeadline == "") {
+    if (deadline.studentdeadline == ""|| deadline.staffdeadline == "") {
     return res.status(400).json({
       error: "Missing user input"});
     }
@@ -42,9 +42,9 @@ exports.getStudentDeadline = async (req, res) => {
   }
 };   
 
-exports.getTeacherDeadline = async (req, res) => {
+exports.getStaffDeadline = async (req, res) => {
   try {
-    let tcDeadline = await Deadline.find({ }, {teacherdeadline:1, _id:0});
+    let tcDeadline = await Deadline.find({ }, {staffdeadline:1, _id:0});
     console.log(tcDeadline);
     console.log("Success we found the deadline");
     res.status(201).json({ tcDeadline });

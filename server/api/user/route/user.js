@@ -7,7 +7,7 @@ const deadlineController = require("../controller/deadlineController");
 router.post("/login", userController.loginUser);
 router.post("/register", userController.registerNewUser);
 router.get("/getstudentd", deadlineController.getStudentDeadline);
-router.get("/getteacherd", deadlineController.getTeacherDeadline);
+router.get("/getstaffd", deadlineController.getStaffDeadline);
 router.post("/setd", deadlineController.setDeadline);
 
 module.exports = router;
