@@ -2,11 +2,6 @@ const Deadline = require("../model/Deadline");
 
 exports.setDeadline = async (req, res) => {
   try {
-    // const deadline = new Deadline({
-    //   deadline: req.body.deadline
-    // });
-    // var ObjectID = require('mongodb').ObjectID;
-    // let userdl = await deadline.updateOne();
     const deadline = new Deadline({
       studentdeadline: req.body.studentdeadline,
       teacherdeadline: req.body.teacherdeadline
