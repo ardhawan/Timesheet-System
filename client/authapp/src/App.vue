@@ -65,6 +65,7 @@ export default {
           else if(userRole == "staff")
           {
             console.log("We are in the staff portal");
+            this.$router.push("/stdisplay");
           }
           else if(userRole == "admin")
           {

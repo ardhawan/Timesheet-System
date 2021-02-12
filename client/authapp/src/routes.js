@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import App from './App'
 import StudentDisplay from './StudentDisplay.vue'
 import SettingDeadline from './SettingDeadline.vue'
+import StaffDisplay from './StaffDisplay.vue'
 import testing from './testing.vue'
 
 Vue.use(Router);
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/setdeadline',
     component: SettingDeadline
+  },
+  {
+    path: '/stdisplay',
+    component: StaffDisplay
   }
 ];
 
