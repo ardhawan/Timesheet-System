@@ -6,7 +6,7 @@
         </div>
         <h1 class="title">Deadline : {{date}}</h1>
         <div class="wrap">
-            <button type="submit" class="btn-group-lg">Submit New Forms</button>
+            <button type="submit" class="btn-group-lg">Submit Timesheets</button>
             <button type="submit" class="btn-group-lg">View Timesheet Records</button>
             <button type="submit" class="btn-group-lg">View Statistics</button>
         </div>
