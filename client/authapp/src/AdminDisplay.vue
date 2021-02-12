@@ -5,8 +5,8 @@
             <p @click="logUserOut" class="logout-btn">Logout</p>
         </div>
         <div class="wrap">
-            <router-link to='/setdeadline' class="routerLink"><button type="submit" class="btn-group-lg">Exporting Timesheets</button></router-link>
-            <button type="submit" class="btn-group-lg">Set Timesheet Deadline</button>
+            <button type="submit" class="btn-group-lg">Exporting Timesheets</button>
+            <router-link to='/setdeadline' class="routerLink"><button type="submit" class="btn-group-lg">Set Timesheet Deadline</button></router-link>
             <button type="submit" class="btn-group-lg">View Timesheet Records</button>
         </div>
         <div class="down-bar">
