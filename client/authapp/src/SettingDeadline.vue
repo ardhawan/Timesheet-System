@@ -13,8 +13,6 @@
           <label class="size-label" for="staffdeadline">Deadline Date For Staff</label>
           <input type="date" class="form-control-lg" id="staffdeadline" name="staffdeadline" v-model="details.staffdeadline">
         </div>
-                <!-- <router-link to='/studentdisplay'>Login</router-link> -->
-                <!-- <form v-on:submit.prevent="loginUser"> -->
         <button type="submit" class="btn-group-lg">Submit</button>
       </form>
     </div>
