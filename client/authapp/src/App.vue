@@ -70,6 +70,7 @@ export default {
           else if(userRole == "admin")
           {
             console.log("We are in the admin portal");
+            this.$router.push("/amdisplay");
           }
         }
       } catch (err) {

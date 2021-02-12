@@ -39,7 +39,10 @@ const routes = [
   },
   {
     path: '/amdisplay',
-    component: AdminDisplay
+    component: AdminDisplay,
+    meta: {
+      requiresAuth: true
+    }
   },
 ];
 
