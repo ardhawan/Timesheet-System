@@ -50,7 +50,7 @@ export default {
         if (deadlineresponse) {
           console.log("Success in setting deadline");
           this.missing = false;
-          this.$router.push("/test");
+          this.$router.push("/dlemail");
         }
       } catch (err) {
         console.log("Error in setting deadline");
