@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import App from './App'
 import StudentDisplay from './StudentDisplay.vue'
-import SettingDeadline from './SettingDeadline.vue'
 import StaffDisplay from './StaffDisplay.vue'
 import AdminDisplay from './AdminDisplay.vue'
+import SettingDeadline from './SettingDeadline.vue'
 import DeadlineEmail from './DeadlineEmail.vue'
 
 Vue.use(Router);
@@ -12,23 +12,12 @@ Vue.use(Router);
 // export default new Router({
 const routes = [
   {
-    path: '/sdisplay',
-    component: StudentDisplay,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
     path: '/app',
     component: App
   },
   {
-    path: '/dlemail',
-    component: DeadlineEmail
-  },
-  {
-    path: '/setdeadline',
-    component: SettingDeadline,
+    path: '/sdisplay',
+    component: StudentDisplay,
     meta: {
       requiresAuth: true
     }
@@ -47,6 +36,17 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: '/setdeadline',
+    component: SettingDeadline,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/dlemail',
+    component: DeadlineEmail
+  }
 ];
 
 const router = new Router({
