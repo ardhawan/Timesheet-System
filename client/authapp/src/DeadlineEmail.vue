@@ -17,7 +17,7 @@
           <label class="size-label-bottom" for="staffmessage">Message For Staff</label>
           <textarea class="form-control-lg-bottom" id="staffmessage" name="staffmessage" placeholder="Please enter your message" v-model="emaildetails.staffmessage"></textarea>
         </div>
-        <button type="submit" class="btn-group-lg-student">Submit Student Message</button>
+        <button type="submit" class="btn-group-lg-staff">Submit Staff Message</button>
       </form>
     </div>
   </div>
