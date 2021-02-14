@@ -5,7 +5,7 @@ import StudentDisplay from './StudentDisplay.vue'
 import SettingDeadline from './SettingDeadline.vue'
 import StaffDisplay from './StaffDisplay.vue'
 import AdminDisplay from './AdminDisplay.vue'
-import testing from './testing.vue'
+import DeadlineEmail from './DeadlineEmail.vue'
 
 Vue.use(Router);
 
@@ -23,8 +23,8 @@ const routes = [
     component: App
   },
   {
-    path: '/test',
-    component: testing
+    path: '/dlemail',
+    component: DeadlineEmail
   },
   {
     path: '/setdeadline',

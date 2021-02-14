@@ -4,49 +4,42 @@
       <img src="./assets/logo-white.png">
     </div>
     <div>  
-      <form @submit.prevent="testingApplication">  
-        <!-- <div class="form-group">
-          <label class="size-label" for="studentdeadline">Email For Notification</label>
-          <input type="date" class="form-control-lg" id="studentdeadline" name="studentdeadline" v-model="details.studentdeadline">
-        </div> -->
+      <p class="title">Optional page to notify the student or staff regarding deadline. Write your message in the respective box and submit it.</p>
+      <form @submit.prevent="sendStudentEmail">  
         <div class="form-group">
-          <label class="size-label-center" for="password">Account Password</label>
-          <input type="password" class="form-control-lg-center" id="password" placeholder="Enter Password" name="password" v-model="emaildetails.password">
+          <label class="size-label-top" for="studentmessage">Message For Student</label>
+          <textarea class="form-control-lg-top" id="studentmessage" name="studentmessage" placeholder="Please enter your message" v-model="emaildetails.studentmessage"></textarea>
         </div>
-        <div class="form-group">
-          <label class="size-label-left" for="studentmessage">Message For Student</label>
-          <textarea class="form-control-lg-left" id="studentmessage" name="studentmessage" v-model="message">The deadline for submission of timesheet is 15th</textarea>
-        </div>
-        <div class="form-group">
-          <label class="size-label-right" for="staffmessage">Message For Staff</label>
-          <textarea class="form-control-lg-right" id="staffmessage" name="staffmessage">The deadline for submission of timesheet is 15th</textarea>
-        </div>
-        <button type="submit" class="btn-group-lg">Submit</button>
+        <button type="submit" class="btn-group-lg-student">Submit Student Message</button>
       </form>
-    </div>
-    <div class="down-bar">
-      <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
+      <form @submit.prevent="sendStaffEmail">  
+        <div class="form-group">
+          <label class="size-label-bottom" for="staffmessage">Message For Staff</label>
+          <textarea class="form-control-lg-bottom" id="staffmessage" name="staffmessage" placeholder="Please enter your message" v-model="emaildetails.staffmessage"></textarea>
+        </div>
+        <button type="submit" class="btn-group-lg-student">Submit Student Message</button>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'testing',
+  name: 'DeadlineEmail',
   data () {
     return {
       emaildetails: {
-        password: "",
         studentmessage: "",
-        staffmessage: ""
+        staffmessage: "",
+        senderemail: ""
       }
     };
   },
-  methods: {
-    setDeadline() {
-      console.log(message);
-    }
-  }
+  // methods: {
+  //   setDeadline() {
+  //     console.log(message);
+  //   }
+  // }
       // console.log("Are we here");
       // try {
       //   // console.log(this.login);
@@ -77,100 +70,144 @@ export default {
   display: flex;
 }
 
+.title{
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-left: 1.1rem;
+}
+
 .form-group {
   margin-bottom: 2rem;
 }
 
-.size-label-left {
+.size-label {
+  position: absolute;
+  top: 12%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.size-label-top {
   display: block;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.25rem;
   font-weight: bold;
-  margin-left: 10rem;
+  margin-left: 1.1rem;
 }
 
-.size-label-center {
+.size-label-bottom {
   position: absolute;
-  top: 14%;
-  left: 50%;
+  top: 60%;
+  left: 5.5%;
   transform: translate(-50%, -50%);
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
+  margin-left: 1.1rem;
   font-size: 1.25rem;
   font-weight: bold;
-  white-space: nowrap;
 }
 
-.size-label-right {
+.form-control-lg {
   position: absolute;
-  top: 14%;
-  left: 83%;
+  top: 18%;
+  left: 87%;
   transform: translate(-50%, -50%);
   margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  font-weight: bold;
-  white-space: nowrap;
+  padding: .5rem 1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: .3rem;
+  width: 20%;
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid;
+  cursor: pointer;
 }
 
-.form-control-lg-left {
+.form-control-lg-top {
   padding: .5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: .3rem;
-  width: 30%;
-  height: 450px;
+  width: 70%;
+  height: 200px;
   margin-left: .3rem;
   font-family: "Times New Roman", Times, serif;
   cursor: pointer;
   border: 1px solid;
 }
 
-.form-control-lg-center {
+.form-control-lg-bottom {
   position: absolute;
-  top: 21%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 2rem;
-  padding: .5rem 1rem;
-  font-size: 1.5rem;
-  line-height: 1.5;
-  border-radius: .3rem;
-  width: 23%;
-  font-family: "Times New Roman", Times, serif;
-  border: 1px solid;
-  cursor: pointer;
-}
-
-.form-control-lg-right{
-  position: absolute;
-  top: 32%;
-  left: 83%;
+  top: 80.5%;
+  left: 36.5%;
   transform: translate(-50%, -50%);
   padding: .5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: .3rem;
-  width: 30%;
-  height: 450px;
-  margin-top: 10rem;
+  width: 69.5%;
+  height: 200px;
+  margin: 0 auto;
   font-family: "Times New Roman", Times, serif;
   cursor: pointer;
   border: 1px solid;
 }
 
-.btn-group-lg {
+.btn-group-lg-student {
   position: absolute;
-  top: 76.5%;
-  left: 50%;
+  top: 38%;
+  left: 87%;
   transform: translate(-50%, -50%);
   margin-top: 2rem;
   padding: .5rem 1rem;
   font-size: 1.5rem;
-  line-height: 1.5;
+  line-height: 1;
+  height: 48px;
   border-radius: .3rem;
-  width: 25%;
+  width: 22.2%;
+  text-align: center;
+  background-color: #4365e2;
+  border-color: #4365e2;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-group-lg-student {
+  position: absolute;
+  top: 38%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+  margin-top: 2rem;
+  padding: .5rem 1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  height: 48px;
+  border-radius: .3rem;
+  width: 22.2%;
+  text-align: center;
+  background-color: #4365e2;
+  border-color: #4365e2;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-group-lg-staff {
+  position: absolute;
+  top: 76%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+  margin-top: 2rem;
+  padding: .5rem 1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  height: 48px;
+  border-radius: .3rem;
+  width: 22.2%;
   text-align: center;
   background-color: #4365e2;
   border-color: #4365e2;
@@ -181,7 +218,7 @@ export default {
 .down-bar {
   background-color: #4365e2;
   margin: -8px;
-  margin-top: 44px;
+  margin-top: 246px;
   /* old value is 587 px */
   padding: .5rem 1rem;
   line-height: 0.25;
