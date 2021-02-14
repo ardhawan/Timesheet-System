@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     async sendStudentEmail() {
-      var self = this;
       let token = localStorage.getItem("jwt")
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
