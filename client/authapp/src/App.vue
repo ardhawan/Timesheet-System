@@ -16,7 +16,7 @@
         </div>
       <!-- <router-link to='/studentdisplay'>Login</router-link> -->
       <!-- <form v-on:submit.prevent="loginUser"> -->
-          <button type="submit" class="btn-group-lg">Login</button>
+        <button type="submit" class="btn-group-lg">Login</button>
       </form>
     </div>
     <div class="error-message">
