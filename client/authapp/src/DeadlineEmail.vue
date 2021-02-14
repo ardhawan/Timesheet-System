@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: 'DeadlineEmail',
   data () {
@@ -37,9 +38,12 @@ export default {
   },
   methods: {
     async sendStudentEmail() {
+      var self = this;
+      let token = localStorage.getItem("jwt")
       let decoded = VueJwtDecode.decode(token);
-      let userRole = decoded.role;
-      console.log(userRole);
+      let userEmail = decoded.uname;
+      this.emaildetails.senderemail = userEmail;
+      console.log(this.emaildetails.senderemail);
       try {
         // let emailresponse = await this.$http.post("/user/setd", this.details);
         let emailresponse = "";
