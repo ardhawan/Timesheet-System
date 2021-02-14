@@ -35,30 +35,23 @@ export default {
       }
     };
   },
-  // methods: {
-  //   setDeadline() {
-  //     console.log(message);
-  //   }
-  // }
-      // console.log("Are we here");
-      // try {
-      //   // console.log(this.login);
-      //   let deadlineresponse = await this.$http.post("/user/setd", this.details);
-      //   // let token = response.data.user.token;
-      //   console.log(deadlineresponse.data.userdl.studentdeadline);
-      //   console.log(deadlineresponse.data.userdl.staffdeadline);
-      //   if (deadlineresponse) {
-      //     console.log("Success in setting deadline");
-      //     this.missing = false;
-        //   this.$router.push("/sdisplay");
-//         }
-//       } catch (err) {
-//         console.log("Error in setting deadline");
-//         this.missing = true;
-//         console.log(err.response);
-//       }
-// //  }
-//   }
+  methods: {
+    async sendStudentEmail() {
+      let decoded = VueJwtDecode.decode(token);
+      let userRole = decoded.role;
+      console.log(userRole);
+      try {
+        // let emailresponse = await this.$http.post("/user/setd", this.details);
+        let emailresponse = "";
+        if (emailresponse) {
+          console.log("Success in sending mail");
+        }
+      } catch (err) {
+        console.log("Error in sending mail");
+        console.log(err.response);
+      }
+    }
+  }
 };
 </script>
 
