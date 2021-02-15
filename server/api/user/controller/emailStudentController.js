@@ -29,7 +29,7 @@ exports.sendStudentEmail = async (req, res) => {
     var emailList = [];
     for(var i = 0; i < studentList.length; i++)
     {
-        emailList.push(studentList[i].email);
+        emailList.push(studentList[i].uname);
     }
 
     let mailDetails = {
