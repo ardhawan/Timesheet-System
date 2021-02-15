@@ -24,6 +24,9 @@
     <p class="success-message-student" v-if="success == true">Succesfully sent message</p>
     <p class="missing-message-student" v-if="missing == true">Missing user input</p>
     <p class="error-message-student" v-if="error == true">Fail to send message</p>
+    <p class="success-message-staff" v-if="sfsuccess == true">Succesfully sent message</p>
+    <p class="missing-message-staff" v-if="sfmissing == true">Missing user input</p>
+    <p class="error-message-staff" v-if="sferror == true">Fail to send message</p>
   </div>
 </template>
 
@@ -45,7 +48,10 @@ export default {
       },
       success: false,
       missing: false,
-      error: false
+      error: false,
+      sfsuccess: false,
+      sfmissing: false,
+      sferror: false,
     };
   },
   methods: {
@@ -54,11 +60,9 @@ export default {
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
       this.studentdetails.senderemail = userEmail;
-      this.staffdetails.senderemail = userEmail;
       console.log(this.studentdetails.senderemail);
       let userPassword = localStorage.getItem("keyinfo")
       this.studentdetails.password = userPassword;
-      this.staffdetails.password = userPassword;
       try {
         let emailresponse = await this.$http.post("/user/sendstudentm", this.studentdetails);
         console.log(emailresponse);
@@ -69,6 +73,7 @@ export default {
           this.success = true;
         }
       } catch(err) {
+        console.log(err.response);
         if(err.response.data.error == "Missing user input")
         {
           console.log("Missing user input");
@@ -82,6 +87,41 @@ export default {
           this.success = false;
           this.messing = false;
           this.error = true;
+        }
+      }
+    },
+    async sendStaffEmail() {
+      let token = localStorage.getItem("jwt")
+      let decoded = VueJwtDecode.decode(token);
+      let userEmail = decoded.uname;
+      this.staffdetails.senderemail = userEmail;
+      console.log(this.staffdetails.senderemail);
+      let userPassword = localStorage.getItem("keyinfo")
+      this.staffdetails.password = userPassword;
+      try {
+        let sfemailresponse = await this.$http.post("/user/sendstaffm", this.staffdetails);
+        console.log(sfemailresponse);
+        if (sfemailresponse) {
+          console.log("Success in sending mail");
+          this.sfmissing = false;
+          this.sferror = false;
+          this.sfsuccess = true;
+        }
+      } catch(err) {
+        console.log(err.response);
+        if(err.response.data.error == "Missing user input")
+        {
+          console.log("Missing user input");
+          this.sfsuccess = false;
+          this.sferror = false;
+          this.sfmissing = true;
+        }
+        else
+        {
+          console.log("Error in sending mail");
+          this.sfsuccess = false;
+          this.sfmessing = false;
+          this.sferror = true;
         }
       }
     }
@@ -252,18 +292,6 @@ export default {
   color: white;
 }
 
-.down-bar {
-  background-color: #4365e2;
-  margin: -8px;
-  margin-top: 246px;
-  /* old value is 587 px */
-  padding: .5rem 1rem;
-  line-height: 0.25;
-  text-align: center;
-  color: white;
-  font-size: 1.5rem;
-}
-
 .success-message-student {
   position: absolute;
   top: 33%;
@@ -288,6 +316,36 @@ export default {
   position: absolute;
   top: 33%;
   left: 87%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: red;
+  white-space: nowrap;
+}
+
+.success-message-staff {
+  position: absolute;
+  top: 71%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: black;
+  white-space: nowrap;
+}
+
+.missing-message-staff {
+  position: absolute;
+  top: 71%;
+  left: 87.5%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: red;
+  white-space: nowrap;
+}
+
+.error-message-staff {
+  position: absolute;
+  top: 71%;
+  left: 87.5%;
   transform: translate(-50%, -50%);
   font-size: 1.5rem;
   color: red;

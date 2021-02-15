@@ -3,13 +3,13 @@ const nodemailer = require('nodemailer');
 
 exports.sendStaffEmail = async (req, res) => {
     const senderemail = req.body.senderemail;
-    const teachermessage = req.body.teachermessage;
-    console.log(teachermessage);
+    const staffmessage = req.body.staffmessage;
+    console.log(staffmessage);
     const password = req.body.password;
     let staffList = await User.find({role:"staff"}, {uname:1, _id:0});
     console.log(staffList);
 
-    if (teachermessage == "") {
+    if (staffmessage == "") {
         return res.status(400).json({error: "Missing user input"});
     }
 
@@ -37,7 +37,7 @@ exports.sendStaffEmail = async (req, res) => {
         to: [],
         bcc: sfemailList,
         subject: 'Deadline of the project',
-        html: teachermessage
+        html: staffmessage
     };
 
     mailTransporter.sendMail(mailDetails, function(err, info) { 
