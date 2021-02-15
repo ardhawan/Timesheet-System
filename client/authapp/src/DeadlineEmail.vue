@@ -2,6 +2,7 @@
   <div>
     <div class="nav-bar">
       <img src="./assets/logo-white.png">
+      <router-link to='/amdisplay'><p class="back-btn">Back</p></router-link>
     </div>
     <div>  
       <p class="title">Optional page to notify the student or staff regarding deadline. Write your message in the respective box and submit it.</p>
@@ -94,6 +95,16 @@ export default {
   margin-top: -90px;
   background-color: #4365e2;
   display: flex;
+}
+
+.back-btn {
+    color: white;
+    font-size: 2.25rem;
+    position: absolute;
+    right: 0;
+    margin-right: 1.5rem;
+    margin-top: 2rem; 
+    cursor: pointer;
 }
 
 .title{
