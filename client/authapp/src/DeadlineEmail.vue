@@ -63,24 +63,24 @@ export default {
         console.log(emailresponse);
         if (emailresponse) {
           console.log("Success in sending mail");
-          this.success = true;
           this.missing = false;
           this.error = false;
+          this.success = true;
         }
       } catch(err) {
         if(err.response.data.error == "Missing user input")
         {
           console.log("Missing user input");
-          this.missing = true;
           this.success = false;
           this.error = false;
+          this.missing = true;
         }
         else
         {
           console.log("Error in sending mail");
-          this.error = true;
           this.success = false;
           this.messing = false;
+          this.error = true;
         }
       }
     }
