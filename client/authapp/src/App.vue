@@ -95,7 +95,7 @@ export default {
 
 .wrap {
   position: absolute;
-  top: 53%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid;
@@ -152,7 +152,7 @@ export default {
 .down-bar {
   background-color: #4365e2;
   margin: -8px;
-  margin-top: 587px;
+  margin-top: 591px;
   padding: .5rem 1rem;
   line-height: 0.25;
   text-align: center;
