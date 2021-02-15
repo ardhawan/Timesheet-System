@@ -45,7 +45,10 @@ const routes = [
   },
   {
     path: '/dlemail',
-    component: DeadlineEmail
+    component: DeadlineEmail,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
