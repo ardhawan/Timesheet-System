@@ -8,18 +8,21 @@
       <form @submit.prevent="sendStudentEmail">  
         <div class="form-group">
           <label class="size-label-top" for="studentmessage">Message For Student</label>
-          <textarea class="form-control-lg-top" id="studentmessage" name="studentmessage" placeholder="Please enter your message" v-model="emaildetails.studentmessage"></textarea>
+          <textarea class="form-control-lg-top" id="studentmessage" placeholder="Please enter your message" name="studentmessage" v-model="studentdetails.studentmessage"></textarea>
         </div>
         <button type="submit" class="btn-group-lg-student">Submit Student Message</button>
       </form>
       <form @submit.prevent="sendStaffEmail">  
         <div class="form-group">
           <label class="size-label-bottom" for="staffmessage">Message For Staff</label>
-          <textarea class="form-control-lg-bottom" id="staffmessage" name="staffmessage" placeholder="Please enter your message" v-model="emaildetails.staffmessage"></textarea>
+          <textarea class="form-control-lg-bottom" id="staffmessage" name="staffmessage" placeholder="Please enter your message" v-model="staffdetails.staffmessage"></textarea>
         </div>
         <button type="submit" class="btn-group-lg-staff">Submit Staff Message</button>
       </form>
     </div>
+    <p class="success-message-student" v-if="success == true">Succesfully sent message</p>
+    <p class="missing-message-student" v-if="missing == true">Missing user input</p>
+    <p class="error-message-student" v-if="error == true">Fail to send message</p>
   </div>
 </template>
 
@@ -29,12 +32,19 @@ export default {
   name: 'DeadlineEmail',
   data () {
     return {
-      emaildetails: {
+      studentdetails: {
         studentmessage: "",
-        staffmessage: "",
         senderemail: "",
         password: ""
-      }
+      },
+      staffdetails: {
+        senderemail: "",
+        staffmessage: "",
+        password: ""
+      },
+      success: false,
+      missing: false,
+      error: false
     };
   },
   methods: {
@@ -42,19 +52,36 @@ export default {
       let token = localStorage.getItem("jwt")
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
-      this.emaildetails.senderemail = userEmail;
-      console.log(this.emaildetails.senderemail);
+      this.studentdetails.senderemail = userEmail;
+      this.staffdetails.senderemail = userEmail;
+      console.log(this.studentdetails.senderemail);
       let userPassword = localStorage.getItem("keyinfo")
-      this.emaildetails.password = userPassword;
+      this.studentdetails.password = userPassword;
+      this.staffdetails.password = userPassword;
       try {
-        // let emailresponse = await this.$http.post("/user/setd", this.details);
-        let emailresponse = "";
+        let emailresponse = await this.$http.post("/user/sendstudentm", this.studentdetails);
+        console.log(emailresponse);
         if (emailresponse) {
           console.log("Success in sending mail");
+          this.success = true;
+          this.missing = false;
+          this.error = false;
         }
-      } catch (err) {
-        console.log("Error in sending mail");
-        console.log(err.response);
+      } catch(err) {
+        if(err.response.data.error == "Missing user input")
+        {
+          console.log("Missing user input");
+          this.missing = true;
+          this.success = false;
+          this.error = false;
+        }
+        else
+        {
+          console.log("Error in sending mail");
+          this.error = true;
+          this.success = false;
+          this.messing = false;
+        }
       }
     }
   }
@@ -226,14 +253,33 @@ export default {
   font-size: 1.5rem;
 }
 
-/* .error-message {
+.success-message-student {
   position: absolute;
-  top: 73%;
-  left: 51%;
+  top: 33%;
+  left: 87.5%;
   transform: translate(-50%, -50%);
-  width: 560px;
-  text-align: center;
+  font-size: 1.5rem;
+  color: black;
+  white-space: nowrap;
+}
+
+.missing-message-student {
+  position: absolute;
+  top: 33%;
+  left: 87%;
+  transform: translate(-50%, -50%);
   font-size: 1.5rem;
   color: red;
-} */
+  white-space: nowrap;
+}
+
+.error-message-student {
+  position: absolute;
+  top: 33%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: red;
+  white-space: nowrap;
+}
 </style>
