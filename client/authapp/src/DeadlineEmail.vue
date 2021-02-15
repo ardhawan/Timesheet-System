@@ -33,8 +33,8 @@ export default {
   data () {
     return {
       studentdetails: {
-        studentmessage: "",
         senderemail: "",
+        studentmessage: "",
         password: ""
       },
       staffdetails: {
