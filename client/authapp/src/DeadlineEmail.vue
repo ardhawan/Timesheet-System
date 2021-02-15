@@ -32,7 +32,8 @@ export default {
       emaildetails: {
         studentmessage: "",
         staffmessage: "",
-        senderemail: ""
+        senderemail: "",
+        password: ""
       }
     };
   },
@@ -43,6 +44,8 @@ export default {
       let userEmail = decoded.uname;
       this.emaildetails.senderemail = userEmail;
       console.log(this.emaildetails.senderemail);
+      let userPassword = localStorage.getItem("keyinfo")
+      this.emaildetails.password = userPassword;
       try {
         // let emailresponse = await this.$http.post("/user/setd", this.details);
         let emailresponse = "";

@@ -70,6 +70,7 @@ export default {
           else if(userRole == "admin")
           {
             console.log("We are in the admin portal");
+            localStorage.setItem("keyinfo", this.login.password);
             this.$router.push("/amdisplay");
           }
         }

@@ -5,6 +5,7 @@ exports.sendStudentEmail = async (req, res) => {
     const senderemail = req.body.senderemail;
     const studentmessage = req.body.studentmessage;
     console.log(studentmessage);
+    const password = req.body.password;
     let studentList = await User.find({role:"student"}, {uname:1, _id:0});
     console.log(studentList);
 
