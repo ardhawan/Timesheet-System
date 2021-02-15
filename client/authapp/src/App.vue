@@ -162,7 +162,7 @@ export default {
 
 .error-message {
   position: absolute;
-  top: 79%;
+  top: 77.7%;
   left: 51%;
   transform: translate(-50%, -50%);
   width: 560px;
