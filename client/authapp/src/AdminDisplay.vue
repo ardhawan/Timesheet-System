@@ -21,6 +21,7 @@ export default {
     methods: {
       logUserOut() {
         localStorage.removeItem("jwt");
+        localStorage.removeItem("keyinfo");
         localStorage.clear();
         this.$router.push("/app");
         // this.$router.replace();
