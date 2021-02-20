@@ -48,7 +48,7 @@ exports.sendStaffEmail = async (req, res) => {
         } 
         else {
             console.log('Email sent successfully to student: ' + info.messageId); 
-            res.status(200).json({message: "Email has been sent to student"});
+            res.status(200).json({message: "Email has been sent to staff"});
         } 
     });
 };
