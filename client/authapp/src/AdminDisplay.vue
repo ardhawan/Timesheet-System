@@ -20,7 +20,7 @@ export default {
     name: 'AdminDisplay',
     methods: {
       logUserOut() {
-        localStorage.removeItem("jwt");
+        localStorage.removeItem("userinfo");
         localStorage.removeItem("keyinfo");
         localStorage.clear();
         this.$router.push("/app");

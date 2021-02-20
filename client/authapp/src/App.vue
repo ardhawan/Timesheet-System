@@ -55,7 +55,7 @@ export default {
           let decoded = VueJwtDecode.decode(token);
           let userRole = decoded.role;
           console.log(userRole);
-          localStorage.setItem("jwt", token);
+          localStorage.setItem("userinfo", token);
           this.error = false;
           if(userRole == "student")
           {

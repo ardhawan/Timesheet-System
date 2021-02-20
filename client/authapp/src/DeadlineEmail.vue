@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     async sendStudentEmail() {
-      let token = localStorage.getItem("jwt")
+      let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
       this.studentdetails.senderemail = userEmail;
@@ -91,7 +91,7 @@ export default {
       }
     },
     async sendStaffEmail() {
-      let token = localStorage.getItem("jwt")
+      let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
       this.staffdetails.senderemail = userEmail;
