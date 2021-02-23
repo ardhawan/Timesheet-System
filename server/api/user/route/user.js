@@ -13,5 +13,6 @@ router.get("/getstaffd", deadlineController.getStaffDeadline);
 router.post("/setd", deadlineController.setDeadline);
 router.post("/sendstudentm", emailStudentController.sendStudentEmail);
 router.post("/sendstaffm", emailStaffController.sendStaffEmail);
+router.post("/getinfo", userController.getModuleJobRole);
 
 module.exports = router;
