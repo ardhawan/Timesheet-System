@@ -38,15 +38,4 @@ exports.registerNewUser = async (req, res) => {
   } catch (err) {
     res.status(400).json({ err: err });
   }
-};
-
-exports.getModuleJobRole = async (req, res) => {
-  try {
-    let mjInfo = await User.find({ }, {jobrole:1, module:1, _id:0});
-    console.log(mjInfo);
-    console.log("Success we found the information");
-    res.status(201).json({ mjInfo });
-  } catch (err) {
-    res.status(400).json({ err: err });
-  }
-};   
+};  
