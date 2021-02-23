@@ -3,20 +3,20 @@
     <div class="nav-bar">
       <img src="./assets/logo-white.png">
     </div>
-    <div class="wrap">
+    <div class="background-box">
       <h1 class ="title">Timesheet Management System</h1>  
       <form @submit.prevent="loginUser">  
-        <div class="form-group">
-          <label class="size-label" for="Username">Computing Username</label>
-          <input type="username" class="form-control-lg" id="Username" placeholder="Enter Username" name="username" v-model="login.uname">
+        <div class="input-group">
+          <label class="input-label" for="Username">Computing Username</label>
+          <input type="username" class="input-btn" id="Username" placeholder="Enter Username" name="username" v-model="login.uname">
         </div>
-        <div class="form-group">
-          <label class="size-label" for="Password">Computing Password</label>
-          <input type="password" class="form-control-lg" id="Password" placeholder="Enter Password" name="password" v-model="login.password">
+        <div class="input-group">
+          <label class="input-label" for="Password">Computing Password</label>
+          <input type="password" class="input-btn" id="Password" placeholder="Enter Password" name="password" v-model="login.password">
         </div>
       <!-- <router-link to='/studentdisplay'>Login</router-link> -->
       <!-- <form v-on:submit.prevent="loginUser"> -->
-        <button type="submit" class="btn-group-lg">Login</button>
+        <button type="submit" class="submit-btn">Login</button>
       </form>
     </div>
     <div class="error-message">
@@ -31,7 +31,6 @@
 <script>
 import VueJwtDecode from "vue-jwt-decode";
 export default {
-  // import swal from "sweetalert";
   name: 'App',
   data () {
     return {
@@ -93,7 +92,7 @@ export default {
   display: flex;
 }
 
-.wrap {
+.background-btn {
   position: absolute;
   top: 52%;
   left: 50%;
@@ -112,19 +111,19 @@ export default {
   margin-bottom: 2rem;
 }
 
-.size-label {
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-label {
   display: block;
   margin-bottom: 1rem;
   font-size: 1.25rem;
   font-weight: bold;
 }
 
-.form-group {
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.form-control-lg {
+.input-btn {
   padding: .5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -135,7 +134,7 @@ export default {
   cursor: pointer;
 }
 
-.btn-group-lg {
+.submit-btn {
   margin-top: 1rem;
   padding: .5rem 1rem;
   font-size: 1.5rem;
