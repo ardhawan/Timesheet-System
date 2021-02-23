@@ -153,22 +153,11 @@ export default {
   margin-left: 1.1rem;
 }
 
-.form-group {
+.input-group {
   margin-bottom: 2rem;
 }
 
-.size-label {
-  position: absolute;
-  top: 12%;
-  left: 87%;
-  transform: translate(-50%, -50%);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.size-label-top {
+.input-label-top {
   display: block;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -177,7 +166,7 @@ export default {
   margin-left: 1.1rem;
 }
 
-.size-label-bottom {
+.input-label-bottom {
   position: absolute;
   top: 60%;
   left: 5.5%;
@@ -187,22 +176,6 @@ export default {
   margin-left: 1.1rem;
   font-size: 1.25rem;
   font-weight: bold;
-}
-
-.form-control-lg {
-  position: absolute;
-  top: 18%;
-  left: 87%;
-  transform: translate(-50%, -50%);
-  margin-top: 2rem;
-  padding: .5rem 1rem;
-  font-size: 1.5rem;
-  line-height: 1;
-  border-radius: .3rem;
-  width: 20%;
-  font-family: "Times New Roman", Times, serif;
-  border: 1px solid;
-  cursor: pointer;
 }
 
 .input-btn-top {
