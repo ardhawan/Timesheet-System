@@ -56,6 +56,9 @@ export default {
   },
   methods: {
     async sendStudentEmail() {
+      this.success = false;
+      this.missing = false;
+      this.error = false;
       let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
@@ -68,8 +71,6 @@ export default {
         console.log(emailresponse);
         if (emailresponse) {
           console.log("Success in sending mail");
-          this.missing = false;
-          this.error = false;
           this.success = true;
         }
       } catch(err) {
@@ -77,15 +78,11 @@ export default {
         if(err.response.data.error == "Missing user input")
         {
           console.log("Missing user input");
-          this.success = false;
-          this.error = false;
           this.missing = true;
         }
         else
         {
           console.log("Error in sending mail");
-          this.success = false;
-          this.messing = false;
           this.error = true;
         }
       }
