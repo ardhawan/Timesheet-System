@@ -23,7 +23,7 @@ export default {
       localStorage.removeItem("userinfo");
       localStorage.removeItem("keyinfo");
       localStorage.clear();
-      this.$router.push("/app");
+      this.$router.push("/login");
       // this.$router.replace();
       console.log("We have signed out of the system");
     }
