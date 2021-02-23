@@ -4,17 +4,17 @@
       <img src="./assets/logo-white.png">
       <router-link to='/amdisplay'><p class="back-btn">Back</p></router-link>
     </div>
-    <div class="wrap">  
+    <div class="background-box">  
       <form @submit.prevent="setDeadline">  
-        <div class="form-group">
-          <label class="size-label" for="studentdeadline">Deadline Date For Student</label>
-          <input type="date" class="form-control-lg" id="studentdeadline" name="studentdeadline" v-model="details.studentdeadline">
+        <div class="input-group">
+          <label class="input-label" for="studentdeadline">Deadline Date For Student</label>
+          <input type="date" class="input-btn" id="studentdeadline" name="studentdeadline" v-model="details.studentdeadline">
         </div>
-        <div class="form-group">
-          <label class="size-label" for="staffdeadline">Deadline Date For Staff</label>
-          <input type="date" class="form-control-lg" id="staffdeadline" name="staffdeadline" v-model="details.staffdeadline">
+        <div class="input-group">
+          <label class="input-label" for="staffdeadline">Deadline Date For Staff</label>
+          <input type="date" class="input-btn" id="staffdeadline" name="staffdeadline" v-model="details.staffdeadline">
         </div>
-        <button type="submit" class="btn-group-lg">Submit</button>
+        <button type="submit" class="submit-btn">Submit</button>
       </form>
     </div>
     <div class="error-message">
@@ -80,7 +80,7 @@ export default {
     cursor: pointer;
 }
 
-.wrap {
+.background-box {
   position: absolute;
   top: 52%;
   left: 50%;
@@ -91,7 +91,12 @@ export default {
   background-color: #fffaf4;
 }
 
-.size-label {
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-label {
   display: block;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -99,12 +104,7 @@ export default {
   font-weight: bold;
 }
 
-.form-group {
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.form-control-lg {
+.input-btn {
   padding: .5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -115,7 +115,7 @@ export default {
   border: 1px solid;
 }
 
-.btn-group-lg {
+.submit-btn {
   margin-top: 1rem;
   padding: .5rem 1rem;
   font-size: 1.5rem;
