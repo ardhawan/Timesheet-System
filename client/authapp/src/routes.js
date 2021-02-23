@@ -6,6 +6,7 @@ import StaffDisplay from './StaffDisplay.vue'
 import AdminDisplay from './AdminDisplay.vue'
 import SettingDeadline from './SettingDeadline.vue'
 import DeadlineEmail from './DeadlineEmail.vue'
+import SubmitTimesheet from './SubmitTimesheet.vue'
 
 Vue.use(Router);
 
@@ -49,6 +50,10 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/subtimesheet',
+    component: SubmitTimesheet,
   }
 ];
 
