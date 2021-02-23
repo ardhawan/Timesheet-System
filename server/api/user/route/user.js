@@ -14,7 +14,7 @@ router.get("/getstaffd", deadlineController.getStaffDeadline);
 router.post("/setd", deadlineController.setDeadline);
 router.post("/sendstudentm", emailStudentController.sendStudentEmail);
 router.post("/sendstaffm", emailStaffController.sendStaffEmail);
-router.get("/getinfo", timesheetController.getModuleJobRole);
+router.get("/getinfo", timesheetController.getJobModuleRole);
 router.post("/registerstu", timesheetController.registerStudent);
 
 

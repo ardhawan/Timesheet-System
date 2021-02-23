@@ -1,8 +1,8 @@
 const Student = require("../model/Student");
 
-exports.getModuleJobRole = async (req, res) => {
+exports.getJobModuleRole = async (req, res) => {
   try {
-    let mjInfo = await Student.find({ }, {jobrole:1, module:1, _id:0});
+    let mjInfo = await Student.find({ }, {jobrole:1, jobmodule:1, _id:0});
     console.log(mjInfo);
     console.log("Success we found the information");
     res.status(201).json({ mjInfo });
@@ -18,7 +18,7 @@ exports.registerStudent = async (req, res) => {
       employeenumber: req.body.employeenumber,
       department: req.body.department,
       jobrole: req.body.jobrole,
-      module: req.body.module
+      jobmodule: req.body.jobmodule
     });
     let stdata = await student.save();
     res.status(201).json({ stdata });

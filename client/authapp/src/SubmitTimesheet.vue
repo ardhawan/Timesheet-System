@@ -84,6 +84,8 @@ export default {
         weekday: "",
         workhours: ""
       },
+      jobmodule: [],
+      jobrole: [],
       studentdata: [],
       totalhours: 0,
       signbox: false,
@@ -123,7 +125,9 @@ export default {
     console.log("We have come here");
     try{
       let optionresponse = await this.$http.get("/user/getinfo");
-      console.log(optionresponse);
+      // console.log(optionresponse.data.mjInfo[0].jobrole);
+      this.jobrole = optionresponse.data.mjInfo[0].jobrole;
+      this.jobmodule = optionresponse.data.mjInfo[0].jobmodule;
       console.log("We have got the information");
     } catch (err) {
       console.log("Error in showing information");

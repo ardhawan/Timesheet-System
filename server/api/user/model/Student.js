@@ -16,9 +16,9 @@ const studentSchema = new mongoose.Schema({
     type: Array,
     required: [true, "Please Include The Employee's Job Role"]
   },
-  module:{
+  jobmodule:{
     type: Array,
-    required: [true, "Please Include The Employee's Module"]
+    required: [true, "Please Include The Employee's Job Module"]
   },
 });
 
