@@ -1,52 +1,52 @@
 <template>
-    <div>
-        <div class="nav-bar">
-            <img src="./assets/logo-white.png">
-            <p @click="logUserOut" class="logout-btn">Logout</p>
-        </div>
-        <h1 class="title">Deadline : {{date}}</h1>
-        <div class="wrap">
-            <button type="submit" class="btn-group-lg">Submit Timesheets</button>
-            <button type="submit" class="btn-group-lg">View Timesheet Records</button>
-            <button type="submit" class="btn-group-lg">View Statistics</button>
-        </div>
-        <div class="down-bar">
-            <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
-        </div>
+  <div>
+    <div class="nav-bar">
+      <img src="./assets/logo-white.png">
+      <p @click="logUserOut" class="logout-btn">Logout</p>
     </div>
+    <h1 class="title">Deadline : {{date}}</h1>
+    <div class="background-box">
+      <button type="submit" class="option-btn">Submit Timesheets</button>
+      <button type="submit" class="option-btn">View Timesheet Records</button>
+      <button type="submit" class="option-btn">View Statistics</button>
+    </div>
+    <div class="down-bar">
+      <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
+    </div>
+  </div>
 </template>
 
 <script>
 import moment from 'moment'
 export default { 
-    name: 'StudentDisplay',
-    data () {
-      return {
-        date: ""
-      };
-    },
-    methods: {
-      logUserOut() {
-        localStorage.removeItem("userinfo");
-        localStorage.clear();
-        this.$router.push("/app");
-        // this.$router.replace();
-        console.log("We have signed out of the system");
-      }
-    },
-    async mounted() {
-      console.log("We have come here");
-      try{
-        let dateresponse = await this.$http.get("/user/getstudentd");
-        console.log(dateresponse.data.stDeadline[0].studentdeadline);
-        let unformatDate = dateresponse.data.stDeadline[0].studentdeadline;
-        this.date = moment(unformatDate).format("DD-MM-YYYY");
-        // console.log(test[0].Deadline);
-        console.log("We have got the date from the database");
-      } catch (err) {
-        console.log("Error in showing deadline");
-      }
-    },
+  name: 'StudentDisplay',
+  data () {
+    return {
+      date: ""
+    };
+  },
+  methods: {
+    logUserOut() {
+      localStorage.removeItem("userinfo");
+      localStorage.clear();
+      this.$router.push("/app");
+      // this.$router.replace();
+      console.log("We have signed out of the system");
+    }
+  },
+  async mounted() {
+    console.log("We have come here");
+    try{
+      let dateresponse = await this.$http.get("/user/getstudentd");
+      console.log(dateresponse.data.stDeadline[0].studentdeadline);
+      let unformatDate = dateresponse.data.stDeadline[0].studentdeadline;
+      this.date = moment(unformatDate).format("DD-MM-YYYY");
+      // console.log(test[0].Deadline);
+      console.log("We have got the date from the database");
+    } catch (err) {
+      console.log("Error in showing deadline");
+    }
+  },
 }
 </script>
 
@@ -72,7 +72,7 @@ export default {
     text-decoration: none;
 }
 
-.wrap {
+.background-box {
     position: absolute;
     top: 55%;
     left: 50%;
@@ -91,7 +91,7 @@ export default {
     margin-top: 2rem;
 }
 
-.btn-group-lg {
+.option-btn {
     margin-top: 3rem;
     padding: .5rem 1rem;
     font-size: 2.25rem;
