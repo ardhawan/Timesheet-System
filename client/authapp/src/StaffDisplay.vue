@@ -5,7 +5,7 @@
       <p @click="logUserOut" class="logout-btn">Logout</p>
     </div>
     <h1 class="title">Deadline : {{date}}</h1>
-    <div class="backgroun-box">
+    <div class="background-box">
       <button type="submit" class="option-btn">Verify Timesheets</button>
       <button type="submit" class="option-btn">View Timesheet Records</button>
       <button type="submit" class="option-btn">View Statistics</button>
