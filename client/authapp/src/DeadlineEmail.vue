@@ -88,6 +88,9 @@ export default {
       }
     },
     async sendStaffEmail() {
+      this.sfsuccess = false;
+      this.sfmissing = false;
+      this.sferror = false;
       let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
@@ -100,8 +103,6 @@ export default {
         console.log(sfemailresponse);
         if (sfemailresponse) {
           console.log("Success in sending mail");
-          this.sfmissing = false;
-          this.sferror = false;
           this.sfsuccess = true;
         }
       } catch(err) {
@@ -109,15 +110,11 @@ export default {
         if(err.response.data.error == "Missing user input")
         {
           console.log("Missing user input");
-          this.sfsuccess = false;
-          this.sferror = false;
           this.sfmissing = true;
         }
         else
         {
           console.log("Error in sending mail");
-          this.sfsuccess = false;
-          this.sfmessing = false;
           this.sferror = true;
         }
       }
