@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from './App'
+import Login from './Login.vue'
 import StudentDisplay from './StudentDisplay.vue'
 import StaffDisplay from './StaffDisplay.vue'
 import AdminDisplay from './AdminDisplay.vue'
@@ -12,8 +12,8 @@ Vue.use(Router);
 // export default new Router({
 const routes = [
   {
-    path: '/app',
-    component: App
+    path: '/login',
+    component: Login
   },
   {
     path: '/sdisplay',
@@ -62,7 +62,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
       if (localStorage.getItem("userinfo") == null) {
         next({
-          path: "/app"
+          path: "/login"
         });
       } else {
         next();
