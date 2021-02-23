@@ -92,7 +92,7 @@ export default {
   display: flex;
 }
 
-.background-btn {
+.background-box {
   position: absolute;
   top: 52%;
   left: 50%;
