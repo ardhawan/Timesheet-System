@@ -21,11 +21,13 @@
         <button type="submit" class="submit-btn-staff">Submit Staff Message</button>
       </form>
     </div>
-    <p class="success-message-student" v-if="success == true">Succesfully sent message</p>
-    <p class="missing-message-student" v-if="missing == true">Missing user input</p>
+    <p class="message-student" v-if="isInProgress == true">In progress</p>
+    <p class="message-student" v-if="success == true">Succesfully sent message</p>
+    <p class="error-message-student" v-if="missing == true">Missing user input</p>
     <p class="error-message-student" v-if="error == true">Fail to send message</p>
-    <p class="success-message-staff" v-if="sfsuccess == true">Succesfully sent message</p>
-    <p class="missing-message-staff" v-if="sfmissing == true">Missing user input</p>
+    <p class="message-staff" v-if="isInProgressStaff == true">In progress</p>
+    <p class="message-staff" v-if="sfsuccess == true">Succesfully sent message</p>
+    <p class="error-message-staff" v-if="sfmissing == true">Missing user input</p>
     <p class="error-message-staff" v-if="sferror == true">Fail to send message</p>
   </div>
 </template>
@@ -46,9 +48,11 @@ export default {
         staffmessage: "",
         password: ""
       },
+      isInProgress: false,
       success: false,
       missing: false,
       error: false,
+      isInProgressStaff: false,
       sfsuccess: false,
       sfmissing: false,
       sferror: false,
@@ -59,7 +63,8 @@ export default {
       this.success = false;
       this.missing = false;
       this.error = false;
-      let token = localStorage.getItem("userinfo")
+      this.isInProgress = true;
+      let token = localStorage.getItem("userinfo");
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
       this.studentdetails.senderemail = userEmail;
@@ -71,10 +76,12 @@ export default {
         console.log(emailresponse);
         if (emailresponse) {
           console.log("Success in sending mail");
+          this.isInProgress = false;
           this.success = true;
         }
       } catch(err) {
         console.log(err.response);
+        this.isInProgress = false;
         if(err.response.data.error == "Missing user input")
         {
           console.log("Missing user input");
@@ -91,6 +98,7 @@ export default {
       this.sfsuccess = false;
       this.sfmissing = false;
       this.sferror = false;
+      this.isInProgressStaff = true;
       let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
       let userEmail = decoded.uname;
@@ -103,10 +111,12 @@ export default {
         console.log(sfemailresponse);
         if (sfemailresponse) {
           console.log("Success in sending mail");
+          this.isInProgressStaff = false;
           this.sfsuccess = true;
         }
       } catch(err) {
         console.log(err.response);
+        this.isInProgressStaff = false;
         if(err.response.data.error == "Missing user input")
         {
           console.log("Missing user input");
@@ -240,23 +250,13 @@ export default {
   color: white;
 }
 
-.success-message-student {
+.message-student {
   position: absolute;
   top: 33%;
   left: 87.5%;
   transform: translate(-50%, -50%);
   font-size: 1.5rem;
   color: black;
-  white-space: nowrap;
-}
-
-.missing-message-student {
-  position: absolute;
-  top: 33%;
-  left: 87%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-  color: red;
   white-space: nowrap;
 }
 
@@ -270,23 +270,13 @@ export default {
   white-space: nowrap;
 }
 
-.success-message-staff {
+.message-staff {
   position: absolute;
   top: 71%;
   left: 87%;
   transform: translate(-50%, -50%);
   font-size: 1.5rem;
   color: black;
-  white-space: nowrap;
-}
-
-.missing-message-staff {
-  position: absolute;
-  top: 71%;
-  left: 87.5%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-  color: red;
   white-space: nowrap;
 }
 
