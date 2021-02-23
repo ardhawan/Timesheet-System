@@ -136,7 +136,7 @@ export default {
 .nav-bar {
   margin: -8px;
   margin-top: 0px;
-  /* margin-top: -90px; */
+  margin-top: -90px;
   background-color: #4365e2;
   display: flex;
 }
