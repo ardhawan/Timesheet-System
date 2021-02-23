@@ -7,18 +7,18 @@
     <div>  
       <p class="title">Optional page to notify the student or staff regarding deadline. Write your message in the respective box and submit it.</p>
       <form @submit.prevent="sendStudentEmail">  
-        <div class="form-group">
-          <label class="size-label-top" for="studentmessage">Message For Student</label>
-          <textarea class="form-control-lg-top" id="studentmessage" placeholder="Please enter your message" name="studentmessage" v-model="studentdetails.studentmessage"></textarea>
+        <div class="input-group">
+          <label class="input-label-top" for="studentmessage">Message For Student</label>
+          <textarea class="input-btn-top" id="studentmessage" placeholder="Please enter your message" name="studentmessage" v-model="studentdetails.studentmessage"></textarea>
         </div>
-        <button type="submit" class="btn-group-lg-student">Submit Student Message</button>
+        <button type="submit" class="submit-btn-student">Submit Student Message</button>
       </form>
       <form @submit.prevent="sendStaffEmail">  
-        <div class="form-group">
-          <label class="size-label-bottom" for="staffmessage">Message For Staff</label>
-          <textarea class="form-control-lg-bottom" id="staffmessage" name="staffmessage" placeholder="Please enter your message" v-model="staffdetails.staffmessage"></textarea>
+        <div class="input-group">
+          <label class="input-label-bottom" for="staffmessage">Message For Staff</label>
+          <textarea class="input-btn-bottom" id="staffmessage" name="staffmessage" placeholder="Please enter your message" v-model="staffdetails.staffmessage"></textarea>
         </div>
-        <button type="submit" class="btn-group-lg-staff">Submit Staff Message</button>
+        <button type="submit" class="submit-btn-staff">Submit Staff Message</button>
       </form>
     </div>
     <p class="success-message-student" v-if="success == true">Succesfully sent message</p>
@@ -147,7 +147,7 @@ export default {
     cursor: pointer;
 }
 
-.title{
+.title {
   font-size: 1.25rem;
   font-weight: bold;
   margin-left: 1.1rem;
@@ -205,7 +205,7 @@ export default {
   cursor: pointer;
 }
 
-.form-control-lg-top {
+.input-btn-top {
   padding: .5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -218,7 +218,7 @@ export default {
   border: 1px solid;
 }
 
-.form-control-lg-bottom {
+.input-btn-bottom {
   position: absolute;
   top: 80.5%;
   left: 36.5%;
@@ -235,7 +235,7 @@ export default {
   border: 1px solid;
 }
 
-.btn-group-lg-student {
+.submit-btn-student {
   position: absolute;
   top: 38%;
   left: 87%;
@@ -254,26 +254,7 @@ export default {
   color: white;
 }
 
-.btn-group-lg-student {
-  position: absolute;
-  top: 38%;
-  left: 87%;
-  transform: translate(-50%, -50%);
-  margin-top: 2rem;
-  padding: .5rem 1rem;
-  font-size: 1.5rem;
-  line-height: 1;
-  height: 48px;
-  border-radius: .3rem;
-  width: 22.2%;
-  text-align: center;
-  background-color: #4365e2;
-  border-color: #4365e2;
-  cursor: pointer;
-  color: white;
-}
-
-.btn-group-lg-staff {
+.submit-btn-staff {
   position: absolute;
   top: 76%;
   left: 87%;
