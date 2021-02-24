@@ -34,7 +34,7 @@
         </select>
       </div>
       <div class="input-group">
-        <label for="workhours" class="input-label">Hours</label>
+        <label for="workhours" class="input-label">Work Hours</label>
           <select id="workhours" class="input-btn" name="workhours" v-model="timesheetinfo.workhours">
             <option disabled value="">Select Hour</option>
             <option>1</option>
