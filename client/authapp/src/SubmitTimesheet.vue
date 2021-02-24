@@ -63,7 +63,7 @@
       </div>
       <button type="submit" class="add-btn">Add More Records</button>
     </form>
-    <p class="title">Total Hours : {{totalhours}}</p>
+    <p v-if="isHourDisplayed==true" class="title">Total Hours : {{totalhours}}</p>
     <table>
       <thead>
         <tr>
@@ -115,6 +115,7 @@ export default {
       error: false,
       success: false,
       isColInitialized: false,
+      isHourDisplayed: false
     }
   },
   methods: {
@@ -131,6 +132,7 @@ export default {
           this.coloumnList = ['Number', 'Week', 'Week Date', 'Week Day', 'Work Hours'];
           this.success = true;
           this.isColInitialized = true;
+          this.isHourDisplayed = true;
         }
         this.timesheetinfo.weekdate = moment(this.timesheetinfo.weekdate).format("DD-MM-YYYY");
         // this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
