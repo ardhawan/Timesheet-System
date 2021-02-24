@@ -61,7 +61,7 @@
             <option v-for="jm in jobmodule" :key="jm">{{jm}}</option>
           </select>
       </div>
-      <button type="submit" class="add-btn">Add More Records</button>
+      <button type="submit" class="add-btn">{{btndisplayname}}</button>
     </form>
     <p v-if="isHourDisplayed==true" class="title">Total Hours : {{totalhours}}</p>
     <table>
@@ -85,7 +85,9 @@
       <input type="checkbox" id="signbox" v-model="signbox" v-if="success==true">
     </div>
     <button @click="storeTimesheetInfo" v-if="signbox == true" class="submit-btn">Submit</button>
-    <p v-if="error == true" class="error-message">Missing user input</p>
+    <p v-if="error == true" class="error-message">Missing week or date or day or hours</p>
+    <p v-if="isDataStored == true" class="success-message">Submitted succesfully</p>
+    <p v-if="isTopRowMissing == true" class="error-message">Missing today's date or role or module</p>
   </div>
 </template>
 
@@ -116,17 +118,31 @@ export default {
       error: false,
       success: false,
       isColInitialized: false,
-      isHourDisplayed: false
+      isHourDisplayed: false,
+      isDataStored: false,
+      isTopRowMissing: false,
+      btndisplayname: ""
     }
   },
   methods: {
     saveTimesheetInfo() {
-      if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "")
+      this.error = false;
+      this.isDataStored = false;
+      this.isTopRowMissing = false;
+      if(this.btndisplayname == "Reset Table")
+      {
+        this.studentinfo.tabledata = [];
+        this.totalhours = 0;
+        this.isHourDisplayed = false;
+        this.isColInitialized = false;
+        this.coloumnList = [];
+        this.btndisplayname = "Add More Records";
+      }
+      else if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "")
       {
         this.error = true;
       }
       else{
-        this.error = false;
         // this.emptytable = false;
         if(!this.isColInitialized)
         {
@@ -136,27 +152,35 @@ export default {
           this.isHourDisplayed = true;
         }
         this.timesheetinfo.weekdate = moment(this.timesheetinfo.weekdate).format("DD-MM-YYYY");
-        // this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
         this.studentinfo.tabledata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours});
         this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
         this.timesheetinfo = {weekname:"", weekdate:"", weekday: "", workhours:""};
         // this.studeninfo.tabledata.sort((a, b) => a.name.localeCompare(b.name));
         this.studentinfo.tabledata.sort((a, b) => a.weekdate.localeCompare(b.weekdate));
-        // this.studentinfo.tabledata.map(a=> a.name).sort().join(" and ")
         console.log(this.studentinfo.tabledata);
       }
     },
     async storeTimesheetInfo() {
+      this.error = false;
+      this.isDataStored = false;
+      this.isTopRowMissing = false;
       try {
+        this.studentinfo.submissiondate = moment(this.studentinfo.submissiondate).format("DD-MM-YYYY");
         let timesheetresponse = await this.$http.post("/user/storeinfo", this.studentinfo);
         if (timesheetresponse) {
+          this.isDataStored = true;
           console.log("Success in saving the timesheet information");
+          this.success = false;
+          this.signbox= false;
+          this.btndisplayname = "Reset Table"
           this.studentinfo.jobrole = "";
           this.studentinfo.jobmodule = "";
           this.studentinfo.submissiondate = "";
+          this.timesheetinfo = {weekname: "", weekdate: "", weekday: "", workhours: ""};
         }
       }
       catch(err) {
+        this.isTopRowMissing = true;
         console.log("There was an error saving the timesheet information");
         console.log(err.response);
       }
@@ -164,6 +188,7 @@ export default {
   },
   async mounted() {
     console.log("We have come here");
+    this.btndisplayname = "Add More Records"
     try{
       let optionresponse = await this.$http.get("/user/getinfo");
       // console.log(optionresponse.data.mjInfo[0].jobrole);
@@ -390,13 +415,19 @@ th {
   vertical-align: middle;
 }
 
+.success-message {
+  position: absolute;
+  top: 72%;
+  left: 4.7%;
+  font-size: 1.3rem;
+  color: black;
+}
+
 .error-message {
   position: absolute;
-  top: 73%;
-  left: 10.3%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 1.5rem;
+  top: 72%;
+  left: 0.5%;
+  font-size: 1.3rem;
   color: red;
 }
 </style>
