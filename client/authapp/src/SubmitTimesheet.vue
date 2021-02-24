@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     storeTimesheetInfo() {
-      if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "" || this.studentinfo.jobrole == "" || this.studentinfo.jobmodule == "")
+      if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "")
       {
         this.error = true;
       }
