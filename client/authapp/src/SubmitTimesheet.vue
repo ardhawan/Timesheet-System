@@ -4,7 +4,7 @@
       <img src="./assets/logo-white.png">
       <p class="back-btn">Back</p>
     </div>
-    <form @submit.prevent="storeTimesheetInfo">  
+    <form @submit.prevent="saveTimesheetInfo">  
       <div class="input-group">
         <label for="weekname" class="input-label">Week</label>
         <select id="weekname" class="input-btn" name="weekname" v-model="timesheetinfo.weekname">
@@ -71,7 +71,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(sd, index) in studentdata" v-bind:key="index">
+        <tr v-for="(sd, index) in studentinfo.tabledata" v-bind:key="index">
           <td>{{index+1}}</td>
           <td>{{sd.weekname}}</td>
           <td>{{sd.weekdate}}</td>
@@ -84,7 +84,7 @@
       <label for="signbox" v-if="success==true">I agree</label>
       <input type="checkbox" id="signbox" v-model="signbox" v-if="success==true">
     </div>
-    <button type="submit" v-if="signbox == true" class="submit-btn">Submit</button>
+    <button @click="storeTimesheetInfo" v-if="signbox == true" class="submit-btn">Submit</button>
     <p v-if="error == true" class="error-message">Missing user input</p>
   </div>
 </template>
@@ -105,11 +105,12 @@ export default {
       studentinfo: {
         jobrole: "",
         jobmodule: "",
-        submissiondate: ""
+        submissiondate: "",
+        tabledata: [],
+        emailaddress: "arnavrajdhawan@hotmail.com"
       },
       jobmodule: [],
       jobrole: [],
-      studentdata: [],
       totalhours: 0,
       signbox: false,
       error: false,
@@ -119,7 +120,7 @@ export default {
     }
   },
   methods: {
-    storeTimesheetInfo() {
+    saveTimesheetInfo() {
       if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "")
       {
         this.error = true;
@@ -136,13 +137,28 @@ export default {
         }
         this.timesheetinfo.weekdate = moment(this.timesheetinfo.weekdate).format("DD-MM-YYYY");
         // this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
-        this.studentdata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours});
+        this.studentinfo.tabledata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours});
         this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
         this.timesheetinfo = {weekname:"", weekdate:"", weekday: "", workhours:""};
-        // this.studentdata.sort((a, b) => a.name.localeCompare(b.name));
-        this.studentdata.sort((a, b) => a.weekdate.localeCompare(b.weekdate));
-        // this.studentdata.map(a=> a.name).sort().join(" and ")
-        console.log(this.studentdata);
+        // this.studeninfo.tabledata.sort((a, b) => a.name.localeCompare(b.name));
+        this.studentinfo.tabledata.sort((a, b) => a.weekdate.localeCompare(b.weekdate));
+        // this.studentinfo.tabledata.map(a=> a.name).sort().join(" and ")
+        console.log(this.studentinfo.tabledata);
+      }
+    },
+    async storeTimesheetInfo() {
+      try {
+        let timesheetresponse = await this.$http.post("/user/storeinfo", this.studentinfo);
+        if (timesheetresponse) {
+          console.log("Success in saving the timesheet information");
+          this.studentinfo.jobrole = "";
+          this.studentinfo.jobmodule = "";
+          this.studentinfo.submissiondate = "";
+        }
+      }
+      catch(err) {
+        console.log("There was an error saving the timesheet information");
+        console.log(err.response);
       }
     }
   },

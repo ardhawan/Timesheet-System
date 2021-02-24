@@ -4,6 +4,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please Include The Employee Name"]
   },
+  emailaddress: {
+    type: String,
+    required: [true, "Please Include The Employee's Email"]
+  },
   employeenumber: {
     type: String,
     required: [true, "Please Include The Employee Number"]

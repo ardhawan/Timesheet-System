@@ -16,6 +16,7 @@ router.post("/sendstudentm", emailStudentController.sendStudentEmail);
 router.post("/sendstaffm", emailStaffController.sendStaffEmail);
 router.get("/getinfo", timesheetController.getJobModuleRole);
 router.post("/registerstu", timesheetController.registerStudent);
+router.post("/storeinfo", timesheetController.storeTimesheetInfo);
 
 
 module.exports = router;
