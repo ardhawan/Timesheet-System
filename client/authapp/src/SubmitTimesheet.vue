@@ -43,8 +43,27 @@
             <option>4</option>
           </select>
       </div>
+      <div class="input-group">
+        <label class="input-label-submission" for="submissiondate">Today's Date</label>
+          <input type="date" id="submissiondate" class="input-btn-submission" name="submissiondate" v-model="studentinfo.submissiondate">
+      </div>
+      <div class="input-group">
+        <label for="jobrole" class="input-label-role">Job Role</label>
+          <select id="jobrole" class="input-btn-role" name="jobrole" v-model="studentinfo.jobrole">
+            <option disabled value="">Select Role</option>
+            <option v-for="jr in jobrole" :key="jr">{{jr}}</option>
+          </select>
+      </div>
+       <div class="input-group">
+        <label for="jobmodule" class="input-label-module">Job Module</label>
+          <select id="jobmodule" class="input-btn-module" name="jobmodule" v-model="studentinfo.jobmodule">
+            <option disabled value="">Select Module</option>
+            <option v-for="jm in jobmodule" :key="jm">{{jm}}</option>
+          </select>
+      </div>
       <button type="submit" class="add-btn">Add More Records</button>
     </form>
+    <p class="title">Total Hours : {{totalhours}}</p>
     <table>
       <thead>
         <tr>
@@ -58,7 +77,6 @@
           <td>{{sd.weekdate}}</td>
           <td>{{sd.weekday}}</td>
           <td>{{sd.workhours}}</td>
-          <td>{{sd.totalhours}}</td>
         </tr>
       </tbody>
     </table>
@@ -84,6 +102,11 @@ export default {
         weekday: "",
         workhours: ""
       },
+      studentinfo: {
+        jobrole: "",
+        jobmodule: "",
+        submissiondate: ""
+      },
       jobmodule: [],
       jobrole: [],
       studentdata: [],
@@ -96,7 +119,7 @@ export default {
   },
   methods: {
     storeTimesheetInfo() {
-      if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "")
+      if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "" || this.studentinfo.jobrole == "" || this.studentinfo.jobmodule == "" || this.studentinfo.submissiondate == "")
       {
         this.error = true;
       }
@@ -105,14 +128,14 @@ export default {
         // this.emptytable = false;
         if(!this.isColInitialized)
         {
-          this.coloumnList = ['Number', 'Week', 'Week Date', 'Week Day', 'Work Hours', 'Total Hours'];
+          this.coloumnList = ['Number', 'Week', 'Week Date', 'Week Day', 'Work Hours'];
           this.success = true;
           this.isColInitialized = true;
         }
         this.timesheetinfo.weekdate = moment(this.timesheetinfo.weekdate).format("DD-MM-YYYY");
-        this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
-        this.studentdata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours, totalhours:this.totalhours});
         // this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
+        this.studentdata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours, totalhours:this.totalhours});
+        this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
         this.timesheetinfo = {weekname:"", weekdate:"", weekday: "", workhours:""};
         // this.studentdata.sort((a, b) => a.name.localeCompare(b.name));
         this.studentdata.sort((a, b) => a.weekdate.localeCompare(b.weekdate));
@@ -155,6 +178,15 @@ export default {
   cursor: pointer;
 }
 
+.title {
+  position: absolute;
+  top: 30%;
+  left: 29%;
+  transform: translate(-50%, -50%);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 .input-group {
   margin-bottom: 1rem;
   text-align: left;
@@ -190,8 +222,84 @@ export default {
   cursor: pointer;
 }
 
+.input-label-submission {
+  display: block;
+  position: absolute;
+  top: 18%;
+  left: 28.3%;
+  transform: translate(-50%, -50%);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.input-btn-submission {
+  position: absolute;
+  top: 24%;
+  left: 34.5%;
+  transform: translate(-50%, -50%);
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: .3rem;
+  width: 17.7%;
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.input-label-role {
+  display: block;
+  position: absolute;
+  top: 18%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.input-btn-role {
+  position: absolute;
+  top: 24.3%;
+  left: 62%;
+  transform: translate(-50%, -50%);
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+  width: 19.8%;
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.input-label-module {
+  display: block;
+  position: absolute;
+  top: 18%;
+  left: 83.2%;
+  transform: translate(-50%, -50%);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.input-btn-module {
+  display: block;
+  position: absolute;
+  top: 24.3%;
+  left: 89.6%;
+  transform: translate(-50%, -50%);
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+  width: 19.8%;
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid;
+  cursor: pointer;
+}
+
 .add-btn {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   padding: .5rem 1rem;
   font-size: 1.5rem;
   line-height: 1.25;
@@ -205,7 +313,7 @@ export default {
 }
 
 .submit-btn {
-  margin-top: 2.5rem;
+  margin-top: 2.75rem;
   padding: .5rem 1rem;
   font-size: 1.5rem;
   line-height: 1.25;
@@ -220,7 +328,7 @@ export default {
 
 table {
   position: absolute;
-  top: 34%;
+  top: 36.3%;
   left: 24.5%;
   border-collapse: collapse;
   width: 75%;
