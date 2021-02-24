@@ -134,7 +134,7 @@ export default {
         }
         this.timesheetinfo.weekdate = moment(this.timesheetinfo.weekdate).format("DD-MM-YYYY");
         // this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
-        this.studentdata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours, totalhours:this.totalhours});
+        this.studentdata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours});
         this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
         this.timesheetinfo = {weekname:"", weekdate:"", weekday: "", workhours:""};
         // this.studentdata.sort((a, b) => a.name.localeCompare(b.name));
