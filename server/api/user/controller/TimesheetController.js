@@ -3,7 +3,7 @@ const Timesheet  = require("../model/Timesheet");
 
 exports.getJobModuleRole = async (req, res) => {
   try {
-    let mjInfo = await Student.find({ }, {jobrole:1, jobmodule:1, _id:0});
+    let mjInfo = await Student.find({emailaddress: req.params.emailaddress}, {jobrole:1, jobmodule:1, _id:0});
     console.log(mjInfo);
     console.log("Success we found the information");
     res.status(201).json({ mjInfo });

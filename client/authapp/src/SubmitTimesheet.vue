@@ -109,7 +109,7 @@ export default {
         jobmodule: "",
         submissiondate: "",
         tabledata: [],
-        emailaddress: "arnavrajdhawan@hotmail.com"
+        emailaddress: "arnavdhawan28@gmail.com"
       },
       jobmodule: [],
       jobrole: [],
@@ -190,7 +190,7 @@ export default {
     console.log("We have come here");
     this.btndisplayname = "Add More Records"
     try{
-      let optionresponse = await this.$http.get("/user/getinfo");
+      let optionresponse = await this.$http.get("/user/getinfo/" + this.studentinfo.emailaddress);
       // console.log(optionresponse.data.mjInfo[0].jobrole);
       this.jobrole = optionresponse.data.mjInfo[0].jobrole;
       this.jobmodule = optionresponse.data.mjInfo[0].jobmodule;
@@ -319,7 +319,7 @@ export default {
   display: block;
   position: absolute;
   top: 18%;
-  left: 83.2%;
+  left: 83.4%;
   transform: translate(-50%, -50%);
   font-size: 1.25rem;
   font-weight: bold;
