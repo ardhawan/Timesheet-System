@@ -60,7 +60,7 @@ const routes = [
     }
   },
   {
-    path: '/vertimesheet',
+    path: '/vrtimesheet',
     component: VerifyTimesheet,
   }
 ];
