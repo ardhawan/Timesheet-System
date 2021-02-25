@@ -109,7 +109,7 @@ export default {
         jobmodule: "",
         submissiondate: "",
         tabledata: [],
-        emailaddress: "arnavdhawan28@gmail.com"
+        emailaddress: ""
       },
       jobmodule: [],
       jobrole: [],
@@ -190,6 +190,9 @@ export default {
     console.log("We have come here");
     this.btndisplayname = "Add More Records"
     try{
+      let token = localStorage.getItem("userinfo")
+      let decoded = VueJwtDecode.decode(token);
+      this.studentinfo.emailaddress = decoded.uname;
       let optionresponse = await this.$http.get("/user/getinfo/" + this.studentinfo.emailaddress);
       // console.log(optionresponse.data.mjInfo[0].jobrole);
       this.jobrole = optionresponse.data.mjInfo[0].jobrole;
