@@ -2,7 +2,7 @@
   <div>
     <div class="nav-bar">
       <img src="./assets/logo-white.png">
-      <p class="back-btn">Back</p>
+      <router-link to='/sdisplay'><p class="back-btn">Back</p></router-link>
     </div>
     <form @submit.prevent="saveTimesheetInfo">  
       <div class="input-group">
