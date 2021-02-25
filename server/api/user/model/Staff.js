@@ -9,7 +9,7 @@ const staffSchema = new mongoose.Schema({
     required: [true, "Please Include The Staff's Email"]
   },
   assignedmodule: {
-    type: String,
+    type: Array,
     required: [true, "Please Include The Staff's Assigned Module"]
   },
 });

@@ -6,6 +6,7 @@ const deadlineController = require("../controller/deadlineController");
 const emailStudentController = require("../controller/emailStudentController");
 const emailStaffController = require("../controller/emailStaffController");
 const timesheetController = require("../controller/timesheetController");
+const verifyTimesheetController = require("../controller/verifyTimesheetController");
 
 router.post("/login", userController.loginUser);
 router.post("/register", userController.registerNewUser);
@@ -15,8 +16,9 @@ router.post("/setd", deadlineController.setDeadline);
 router.post("/sendstudentm", emailStudentController.sendStudentEmail);
 router.post("/sendstaffm", emailStaffController.sendStaffEmail);
 router.get("/getinfo/:emailaddress", timesheetController.getJobModuleRole);
-router.post("/registerstu", timesheetController.registerStudent);
+router.post("/registerstudent", timesheetController.registerStudent);
 router.post("/storeinfo", timesheetController.storeTimesheetInfo);
+router.post("/registerstaff", verifyTimesheetController.registerStaff);
 
 
 module.exports = router;
