@@ -6,7 +6,7 @@
     </div>
     <h1 class="title">Deadline : {{date}}</h1>
     <div class="background-box">
-      <button type="submit" class="option-btn">Submit Timesheets</button>
+      <router-link to='/subtimesheet' class="routerLink"><button type="submit" class="option-btn">Submit Timesheets</button></router-link>
       <button type="submit" class="option-btn">View Timesheet Records</button>
       <button type="submit" class="option-btn">View Statistics</button>
     </div>
