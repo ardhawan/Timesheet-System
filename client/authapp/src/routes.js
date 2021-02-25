@@ -7,6 +7,7 @@ import AdminDisplay from './AdminDisplay.vue'
 import SettingDeadline from './SettingDeadline.vue'
 import DeadlineEmail from './DeadlineEmail.vue'
 import SubmitTimesheet from './SubmitTimesheet.vue'
+import VerifyTimesheet from './VerifyTimesheet.vue'
 
 Vue.use(Router);
 
@@ -57,6 +58,10 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/vertimesheet',
+    component: VerifyTimesheet,
   }
 ];
 
