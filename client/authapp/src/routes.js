@@ -54,9 +54,9 @@ const routes = [
   {
     path: '/subtimesheet',
     component: SubmitTimesheet,
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
