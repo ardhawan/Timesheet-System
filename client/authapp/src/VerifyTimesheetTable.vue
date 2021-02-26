@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'VerifyTimesheet',
+  name: 'VerifyTimesheetTable',
   data() {
     return{
       staffemail: "arnavdhawan28@gmail.com",
