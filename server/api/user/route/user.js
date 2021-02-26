@@ -19,6 +19,7 @@ router.get("/getinfo/:emailaddress", timesheetController.getJobModuleRole);
 router.post("/registerstudent", timesheetController.registerStudent);
 router.post("/storeinfo", timesheetController.storeTimesheetInfo);
 router.post("/registerstaff", verifyTimesheetController.registerStaff);
+router.get("/getdetails/:staffemail", verifyTimesheetController.getStudentDetails);
 
 
 module.exports = router;
