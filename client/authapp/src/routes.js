@@ -60,7 +60,7 @@ const routes = [
     }
   },
   {
-    path: '/vrtimesheet',
+    path: '/vrtable',
     component: VerifyTimesheetTable
   }
 ];
