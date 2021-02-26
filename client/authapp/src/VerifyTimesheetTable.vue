@@ -4,7 +4,6 @@
       <img src="./assets/logo-white.png">
       <p class="back-btn">Back</p>
     </div>
-    <!-- <p v-if="isMissingData == true" class="error-message">Currently there are no timesheets</p> -->
     <table>
       <thead>
         <tr>
@@ -26,6 +25,7 @@
         </tr>
       </tbody>
     </table>
+    <p v-if="isDataMissing == true" class="error-message">Currently there are no timesheets that need to be verified</p>
     <div class="down-bar">
       <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
     </div>
@@ -39,14 +39,14 @@ export default {
     return{
       staffemail: "arnavdhawan28@gmail.com",
       timesheetdata: [],
-      // isMissingData: false
+      isDataMissing: false
     }
   },
   async mounted() {
     // let token = localStorage.getItem("userinfo")
     // let decoded = VueJwtDecode.decode(token);
     // this.staffemail = decoded.uname;
-    // this.isMissingData = false;
+    this.isDataMissing = false;
     try {
       let detailsresponse = await this.$http.get("/user/getdetails/" + this.staffemail);
       // console.log(detailsresponse);
@@ -58,7 +58,7 @@ export default {
       }
     }
     catch(err) {
-      // this.isMissingData = true;
+      this.isDataMissing = true;
       console.log("There was an error in retrieving the timesheet information");
       console.log(err.response)
     }  
@@ -85,12 +85,11 @@ export default {
   cursor: pointer;
 }
 
-/* .error-message {
-  top: 10%;
-  left: 2%;
-  font-size: 1.3rem;
+.error-message {
+  text-align: center;
+  font-size: 2rem;
   color: red;
-} */
+}
 
 table {
   border-collapse: collapse;
