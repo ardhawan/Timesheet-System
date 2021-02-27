@@ -12,7 +12,7 @@
           <th>Job Module</th>
           <th>Job Role</th>
           <th>Submission Date</th>
-          <!-- <th>Details Link</th> -->
+          <th>Details Link</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +22,7 @@
           <td>{{td.jobmodule}}</td>
           <td>{{td.jobrole}}</td>
           <td>{{td.submissiondate}}</td>
+          <td><p @click="detailsLink(index)" class="text-message">Click here</p></td>
         </tr>
       </tbody>
     </table>
@@ -41,6 +42,13 @@ export default {
       timesheetdata: [],
       isDataMissing: false
     }
+  },
+  methods: {
+    detailsLink(index) {
+      console.log("Are we here");
+      // console.log(this.timesheetdata[index]);
+      this.$router.push({ name: 'VerifyTimsheetDetails', params: {displaydata: this.timesheetdata[index]}});
+    }  
   },
   async mounted() {
     // let token = localStorage.getItem("userinfo")
@@ -91,6 +99,14 @@ export default {
   color: red;
 }
 
+.text-message {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: blue;
+  margin-top: 0rem;
+  height: 2px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -101,11 +117,10 @@ table {
   margin-bottom: 110px;
 }
 
-
 td, th {
-border: 1px solid black;
-text-align: left;
-padding: 8px;
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
 }
 
 td {
@@ -116,6 +131,10 @@ th {
   background-color:#ddd9d6;
   font-size: 2rem;
 }
+
+/* tr {
+  height: 1px;
+} */
 
 .down-bar 
 {

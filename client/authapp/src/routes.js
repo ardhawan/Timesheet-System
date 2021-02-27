@@ -8,6 +8,7 @@ import SettingDeadline from './SettingDeadline.vue'
 import DeadlineEmail from './DeadlineEmail.vue'
 import SubmitTimesheet from './SubmitTimesheet.vue'
 import VerifyTimesheetTable from './VerifyTimesheetTable.vue'
+import VerifyTimesheetDetails from './VerifyTimesheetDetails.vue'
 
 Vue.use(Router);
 
@@ -62,6 +63,11 @@ const routes = [
   {
     path: '/vrtable',
     component: VerifyTimesheetTable
+  },
+  {
+    path: '/vrdetails/:displaydata',
+    name: 'VerifyTimsheetDetails',
+    component: VerifyTimesheetDetails
   }
 ];
 

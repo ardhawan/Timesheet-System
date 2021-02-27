@@ -20,6 +20,6 @@ router.post("/registerstudent", timesheetController.registerStudent);
 router.post("/storeinfo", timesheetController.storeTimesheetInfo);
 router.post("/registerstaff", verifyTimesheetController.registerStaff);
 router.get("/getdetails/:staffemail", verifyTimesheetController.getStudentDetails);
-
+router.get("/gettable/:employeename/:jobmodule/:jobrole/:submissiondate", verifyTimesheetController.getTableDetails);
 
 module.exports = router;
