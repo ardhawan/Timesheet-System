@@ -41,10 +41,9 @@ export default {
     console.log(this.displaydata)
     try {
       let tableresponse = await this.$http.get("/user/gettable/" + this.displaydata[0].employeename + "/" + this.displaydata[0].jobmodule + "/" + this.displaydata[0].jobrole + "/" + this.displaydata[0].submissiondate);
-      let table = tableresponse.data.tableInfo[0].tabledata.weekname;
       this.hourstable = tableresponse.data.tableInfo[0].tabledata;
       if(tableresponse) {
-        console.log("we got the table data")
+        console.log("We got the table data")
       }
     } 
     catch(err) {
