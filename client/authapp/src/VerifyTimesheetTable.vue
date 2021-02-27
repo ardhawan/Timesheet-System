@@ -132,10 +132,6 @@ th {
   font-size: 2rem;
 }
 
-/* tr {
-  height: 1px;
-} */
-
 .down-bar 
 {
   background-color:#4365e2;

@@ -86,11 +86,10 @@ table {
   margin-bottom: 5rem; 
 }
 
-
 td, th {
-border: 1px solid black;
-text-align: left;
-padding: 8px;
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
 }
 
 td {
