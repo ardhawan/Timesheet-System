@@ -7,10 +7,10 @@
     <table>
       <thead>
         <tr>
-          <th>Row Number</th>
+          <th>Number</th>
           <th>Student Name</th>
           <th>Job Module</th>
-          <th>Job Role</th>
+          <th>Job Position</th>
           <th>Submission Date</th>
           <th>Details Link</th>
         </tr>

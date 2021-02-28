@@ -13,7 +13,6 @@
           <th>Week Day</th>
           <th>Work Hours</th>
           <th>Verify Box</th>
-          <!-- <input type="checkbox" v-model="isAllSelected" class="checkbox"> -->
         </tr>
       </thead>
       <tbody>
@@ -28,12 +27,18 @@
       </tbody>
     </table>
     <div class="checkbox">
-      <label for="signbox" v-if="isVerify==true">I agree</label>
-      <input type="checkbox" id="signbox" v-model="isSigned" v-if="isVerify==true">
+      <label for="signbox" v-if="isVerify == true">I agree</label>
+      <input type="checkbox" id="signbox" v-model="isSigned" v-if="isVerify == true">
+    </div>
+    <p v-if="isSigned == true" class="text-message">Optional to suggest rate of pay</p>
+    <div v-if="isSigned == true" class="input-group">
+      <label class="input-label" for="payrate">Rate Of Pay:</label>
+      <input type="text" class="input-btn" id="payrate" placeholder="Enter Pay" name="payrate" v-model="suggestedRate">
     </div>
     <button v-if="isSigned == true" class="submit-btn">Submit</button>
-    <button v-if="isIncomplete== true" class="submit-btn">Email Student</button>
-    <p v-if="isRefresh == true" class="error-message">Please press the back button</p>
+    <p v-if="isIncomplete == true" class="text-message">If verify box is not ticked click this button to discuss</p>
+    <button v-if="isIncomplete == true" class="submit-btn">Email Student</button>
+    <p v-if="isRefresh == true" class="error-message">Error in displaying table. Please press the back button and try again.</p>
   </div>
 </template>
 
@@ -48,7 +53,8 @@ export default {
       isVerify: false,
       isSigned: false,
       isIncomplete: true,
-      isRefresh: false
+      isRefresh: false,
+      suggestedRate: ""
     }
   },
   methods: {
@@ -117,7 +123,7 @@ export default {
 }
 
 .checkbox {
- margin-left: 46.5%;
+ margin-left: 46%;
 }
 
 .checkbox label {
@@ -131,6 +137,40 @@ export default {
   width: 25px;
   height: 25px;
   vertical-align: middle;
+}
+
+.text-message {
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+  margin-right: 1rem;
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.input-label {
+  position: relative;
+  top: 4px;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 13%;    
+}
+
+.input-btn {
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+  width: 10%;
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid;
+  cursor: pointer;
 }
 
 .submit-btn {
