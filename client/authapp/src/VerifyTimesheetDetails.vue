@@ -12,6 +12,8 @@
           <th>Week Date</th>
           <th>Week Day</th>
           <th>Work Hours</th>
+          <th>Verify Box</th>
+          <!-- <input type="checkbox" v-model="isAllSelected" class="checkbox"> -->
         </tr>
       </thead>
       <tbody>
@@ -21,9 +23,17 @@
           <td>{{ht.weekdate}}</td>
           <td>{{ht.weekday}}</td>
           <td>{{ht.workhours}}</td>
+          <td><input type="checkbox" @click="displaySubmit(index)" class="checkbox-position"></td>
         </tr>
       </tbody>
     </table>
+    <div class="checkbox">
+      <label for="signbox" v-if="isVerify==true">I agree</label>
+      <input type="checkbox" id="signbox" v-model="isSigned" v-if="isVerify==true">
+    </div>
+    <button v-if="isSigned == true" class="submit-btn">Submit</button>
+    <button v-if="isIncomplete== true" class="submit-btn">Email Student</button>
+    <p v-if="isRefresh == true" class="error-message">Please press the back button</p>
   </div>
 </template>
 
@@ -33,7 +43,31 @@ export default {
   data () {
     return{ 
       displaydata: [],
-      hourstable: []
+      hourstable: [],
+		  rowSelected: [],
+      isVerify: false,
+      isSigned: false,
+      isIncomplete: true,
+      isRefresh: false
+    }
+  },
+  methods: {
+    displaySubmit(index) {
+      this.isIncomplete = true;
+      this.isVerify = false;
+      this.isSigned = false;
+      if(this.rowSelected.includes(index)) {
+        let position = this.rowSelected.indexOf(index);
+        this.rowSelected.splice(position, 1);
+      }
+      else {
+        this.rowSelected.push(index);
+        if(this.rowSelected.length == this.hourstable.length) {
+          this.isIncomplete = false;
+          this.isVerify = true;
+          console.log("We will show the display button");
+        }
+      }
     }
   },
   async mounted() {
@@ -47,6 +81,8 @@ export default {
       }
     } 
     catch(err) {
+      this.isIncomplete = false;
+      this.isRefresh = true;
       console.log("We did not get the table data");
       console.log(err.response);
     }
@@ -73,6 +109,46 @@ export default {
   cursor: pointer;
 }
 
+.checkbox-position {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  top: 2px;
+}
+
+.checkbox {
+ margin-left: 46.5%;
+}
+
+.checkbox label {
+  vertical-align: middle;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.checkbox input {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.submit-btn {
+  display: block;
+  margin:auto;
+  margin-top: 3rem;
+  padding: .5rem 1rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  border-radius: .3rem;
+  width: 20%;
+  text-align: center;
+  background-color: #4365e2;
+  border-color: #4365e2;
+  cursor: pointer;
+  color: white;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -81,8 +157,8 @@ table {
   background-color: #fffaf4;
   table-layout: fixed;
   /* margin-bottom: 110px; */
-  /* Old value is this */
-  margin-bottom: 5rem; 
+  /* Old value is this  -- Check the new value */
+  margin-bottom: 3rem; 
 }
 
 td, th {
@@ -98,5 +174,11 @@ td {
 th {
   background-color:#ddd9d6;
   font-size: 2rem;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 2rem;
+  color: red;
 }
 </style>
