@@ -34,11 +34,12 @@
 </template>
 
 <script>
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: 'VerifyTimesheetTable',
   data() {
     return{
-      staffemail: "arnavdhawan28@gmail.com",
+      staffemail: "",
       timesheetdata: [],
       isDataMissing: false
     }
@@ -50,9 +51,9 @@ export default {
     }  
   },
   async mounted() {
-    // let token = localStorage.getItem("userinfo")
-    // let decoded = VueJwtDecode.decode(token);
-    // this.staffemail = decoded.uname;
+    let token = localStorage.getItem("userinfo")
+    let decoded = VueJwtDecode.decode(token);
+    this.staffemail = decoded.uname;
     this.isDataMissing = false;
     let detailsresponse = await this.$http.get("/user/getdetails/" + this.staffemail);
     if (detailsresponse.data.empInfo.length > 0) {
