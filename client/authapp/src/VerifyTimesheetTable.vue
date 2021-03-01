@@ -2,7 +2,7 @@
   <div>
     <div class="nav-bar">
       <img src="./assets/logo-white.png">
-      <p class="back-btn">Back</p>
+      <router-link to='/stdisplay'><p class="back-btn">Back</p></router-link>
     </div>
     <table>
       <thead>
