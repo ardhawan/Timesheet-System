@@ -26,7 +26,7 @@
         </tr>
       </tbody>
     </table>
-    <p v-if="isDataMissing == true" class="error-message">Currently there are no timesheets that need to be verified</p>
+    <p v-if="isDataMissing == true" class="error-message">Currently there are no timesheets that need to be verified.</p>
     <div class="down-bar">
       <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
     </div>
@@ -45,8 +45,7 @@ export default {
   },
   methods: {
     detailsLink(index) {
-      console.log("Are we here");
-      // console.log(this.timesheetdata[index]);
+      console.log("We clicked the link");
       this.$router.push({ name: 'VerifyTimsheetDetails', params: {displaydata: this.timesheetdata[index]}});
     }  
   },
@@ -55,21 +54,17 @@ export default {
     // let decoded = VueJwtDecode.decode(token);
     // this.staffemail = decoded.uname;
     this.isDataMissing = false;
-    try {
-      let detailsresponse = await this.$http.get("/user/getdetails/" + this.staffemail);
-      // console.log(detailsresponse);
-      if (detailsresponse) {
-        this.timesheetdata = detailsresponse.data.empInfo;
-        this.timesheetdata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));
-        console.log(this.timesheetdata);
-        console.log("Success in getting the information");
-      }
+    let detailsresponse = await this.$http.get("/user/getdetails/" + this.staffemail);
+    if (detailsresponse.data.empInfo.length > 0) {
+      this.timesheetdata = detailsresponse.data.empInfo;
+      this.timesheetdata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));
+      console.log(this.timesheetdata);
+      console.log("Success in getting the information");
     }
-    catch(err) {
+    else {
       this.isDataMissing = true;
       console.log("There was an error in retrieving the timesheet information");
-      console.log(err.response)
-    }  
+    }
   }
 };
 </script>

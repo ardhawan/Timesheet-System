@@ -45,7 +45,7 @@
       </div>
       <div class="input-group">
         <label class="input-label-submission" for="submissiondate">Today's Date</label>
-          <input type="date" id="submissiondate" class="input-btn-submission" name="submissiondate" v-model="studentinfo.submissiondate">
+          <input type="date" id="submissiondate" class="input-btn-submission" name="submissiondate" v-model="submissiondate">
       </div>
       <div class="input-group">
         <label for="jobrole" class="input-label-role">Job Role</label>
@@ -112,6 +112,7 @@ export default {
         tabledata: [],
         emailaddress: ""
       },
+      submissiondate: "",
       jobmodule: [],
       jobrole: [],
       totalhours: 0,
@@ -166,7 +167,7 @@ export default {
       this.isDataStored = false;
       this.isTopRowMissing = false;
       try {
-        this.studentinfo.submissiondate = moment(this.studentinfo.submissiondate).format("DD-MM-YYYY");
+        this.studentinfo.submissiondate = moment(this.submissiondate).format("DD-MM-YYYY");
         let timesheetresponse = await this.$http.post("/user/storeinfo", this.studentinfo);
         if (timesheetresponse) {
           this.isDataStored = true;

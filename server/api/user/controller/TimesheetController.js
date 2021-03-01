@@ -41,6 +41,7 @@ exports.storeTimesheetInfo = async (req, res) => {
       jobmodule: req.body.jobmodule,
       submissiondate: req.body.submissiondate,
       status: "Pending",
+      suggestedrate: "Same",
       tabledata: req.body.tabledata
     });
 

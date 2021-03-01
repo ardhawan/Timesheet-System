@@ -30,7 +30,11 @@ const timesheetSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    required: [true, "Please Include The Timesheet Staus"]
+    required: [true, "Please Include The Timesheet Status"]
+  },
+  suggestedrate: {
+    type: String,
+    required: [true, "Please Include The Timesheet's Suggested Rate"]
   },
   tabledata: [{
     weekname: {

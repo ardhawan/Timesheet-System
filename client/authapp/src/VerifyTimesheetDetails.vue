@@ -33,10 +33,11 @@
     <p v-if="isSigned == true" class="text-message">Optional to suggest rate of pay</p>
     <div v-if="isSigned == true" class="input-group">
       <label class="input-label" for="payrate">Rate Of Pay:</label>
-      <input type="text" class="input-btn" id="payrate" placeholder="Enter Pay" name="payrate" v-model="suggestedRate">
+      <input type="text" class="input-btn" id="payrate" placeholder="Enter Pay" name="payrate" v-model="suggestedrate">
     </div>
-    <button v-if="isSigned == true" class="submit-btn">Submit</button>
-    <p v-if="isIncomplete == true" class="text-message">If verify box is not ticked click this button to discuss</p>
+    <p v-if="isUpdateError == true && isSigned == true" class="update-message">Error in updating rate of pay. Please try again.</p>
+    <button @click="updateTable" v-if="isSigned == true" class="submit-btn">Submit</button>
+    <p v-if="isIncomplete == true" class="text-message">If verify box is not ticked click this button to discuss.</p>
     <button v-if="isIncomplete == true" class="submit-btn">Email Student</button>
     <p v-if="isRefresh == true" class="error-message">Error in displaying table. Please press the back button and try again.</p>
   </div>
@@ -54,7 +55,8 @@ export default {
       isSigned: false,
       isIncomplete: true,
       isRefresh: false,
-      suggestedRate: ""
+      suggestedrate: "",
+      isUpdateError: false
     }
   },
   methods: {
@@ -62,6 +64,7 @@ export default {
       this.isIncomplete = true;
       this.isVerify = false;
       this.isSigned = false;
+      this.isUpdateError = false;
       if(this.rowSelected.includes(index)) {
         let position = this.rowSelected.indexOf(index);
         this.rowSelected.splice(position, 1);
@@ -74,6 +77,21 @@ export default {
           console.log("We will show the display button");
         }
       }
+    },
+    async updateTable() {
+      try {
+        let updateresponse = await this.$http.post("/user/updatetable", {suggestedrate: this.suggestedrate});
+        if(updateresponse) {
+          console.log("The timesheet has been verified");
+          this.$router.push("/vrtable")
+        }
+      } 
+      catch(err) {
+        this.isUpdateError = true;
+        this.suggestedrate = "";
+        console.log("There was an error in updating");
+        console.log(err.response);
+      } 
     }
   },
   async mounted() {
@@ -90,10 +108,10 @@ export default {
       this.isIncomplete = false;
       this.isRefresh = true;
       console.log("We did not get the table data");
-      console.log(err.response);
+      // console.log(err.response);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -148,6 +166,13 @@ export default {
   font-weight: bold;
 }
 
+.update-message {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: red;
+}
+
 .input-group {
   display: flex;
   margin-bottom: 1rem;
@@ -176,7 +201,7 @@ export default {
 .submit-btn {
   display: block;
   margin:auto;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   padding: .5rem 1rem;
   font-size: 1.5rem;
   line-height: 1.25;
@@ -196,8 +221,6 @@ table {
   color: black;
   background-color: #fffaf4;
   table-layout: fixed;
-  /* margin-bottom: 110px; */
-  /* Old value is this  -- Check the new value */
   margin-bottom: 3rem; 
 }
 
