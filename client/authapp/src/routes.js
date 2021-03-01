@@ -70,7 +70,10 @@ const routes = [
   {
     path: '/vrdetails/:displaydata',
     name: 'VerifyTimsheetDetails',
-    component: VerifyTimesheetDetails
+    component: VerifyTimesheetDetails,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
