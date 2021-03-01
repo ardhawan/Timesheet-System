@@ -62,7 +62,10 @@ const routes = [
   },
   {
     path: '/vrtable',
-    component: VerifyTimesheetTable
+    component: VerifyTimesheetTable,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/vrdetails/:displaydata',
