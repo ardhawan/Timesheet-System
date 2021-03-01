@@ -35,7 +35,7 @@
       <label class="input-label" for="payrate">Rate Of Pay:</label>
       <input type="text" class="input-btn" id="payrate" placeholder="Enter Pay" name="payrate" v-model="suggestedrate">
     </div>
-    <p v-if="isUpdateError == true && isSigned == true" class="update-message">Error in updating rate of pay. Please try again.</p>
+    <p v-if="isUpdateError == true && isSigned == true" class="update-message">Submission error. Please try again.</p>
     <button @click="updateTable" v-if="isSigned == true" class="submit-btn">Submit</button>
     <p v-if="isIncomplete == true" class="text-message">If verify box is not ticked click this button to discuss.</p>
     <button v-if="isIncomplete == true" class="submit-btn">Email Student</button>
