@@ -22,5 +22,6 @@ router.post("/registerstaff", verifyTimesheetController.registerStaff);
 router.get("/getdetails/:staffemail", verifyTimesheetController.getStudentDetails);
 router.get("/gettable/:employeename/:jobmodule/:jobrole/:submissiondate", verifyTimesheetController.getTableDetails);
 router.post("/updatetable", verifyTimesheetController.updateTable);
+router.post("/notifystudent", verifyTimesheetController.notifyStudent);
 
 module.exports = router;

@@ -16,10 +16,10 @@ exports.setDeadline = async (req, res) => {
     console.log(isDeadline);
     if (isDeadline >= 1)
     {
-        console.log("Lets go");
-        await Deadline.deleteMany({});
-        let test = await Deadline.countDocuments();
-        console.log(test);
+      console.log("Lets go");
+      await Deadline.deleteMany({});
+      let test = await Deadline.countDocuments();
+      console.log(test);
     }
     let userdl = await deadline.save();
     console.log(userdl);

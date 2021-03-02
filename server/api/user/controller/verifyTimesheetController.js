@@ -59,5 +59,51 @@ exports.updateTable = async (req, res) => {
     res.status(400).json({ error: "Error in updating"});
   }
 };
+
+exports.notifyStudent = async (req, res) => {
+  console.log("Do we need to notify");
+  const senderemail = req.body.senderemail;
+  const message = req.body.message;
+  console.log(studentmessage);
+  const senderpassword = req.body.senderpassword;
+  let receiveremail = await Timesheet.find(rowInfo, {emailaddress:1, _id:0});
+  console.log(receiveremail);
+
+  if (message == "") {
+    return res.status(400).json({error: "Missing user input"});
+  }
+
+  let mailTransporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com", // hostname
+    secureConnection: false, // TLS requires secureConnection to be false
+    port: 587, // port for secure SMTP
+    tls: {
+      ciphers:'SSLv3'
+    },
+    auth: {
+      user: senderemail,
+      pass: senderpassword
+    }
+  });
+
+  let mailDetails = {
+    from: senderemail,
+    to: emailaddress,
+    subject: 'Deadline of the project',
+    html: message
+  };
+    
+  mailTransporter.sendMail(mailDetails, function(err, info) { 
+    if(err) { 
+      console.log("Student Error");
+      console.log(err.responseCode);
+      res.status(err.responseCode).json({error: "Fail to send message"});
+    } 
+    else {
+      console.log('Email sent successfully to student: ' + info.messageId); 
+      res.status(200).json({message: "Email has been sent to student"});
+    } 
+  });
+};
   
   

@@ -9,6 +9,7 @@ import DeadlineEmail from './DeadlineEmail.vue'
 import SubmitTimesheet from './SubmitTimesheet.vue'
 import VerifyTimesheetTable from './VerifyTimesheetTable.vue'
 import VerifyTimesheetDetails from './VerifyTimesheetDetails.vue'
+import VerifyTimesheetEmail from './VerifyTimesheetEmail.vue'
 
 Vue.use(Router);
 
@@ -74,6 +75,10 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/vremail',
+    component: VerifyTimesheetEmail
   }
 ];
 

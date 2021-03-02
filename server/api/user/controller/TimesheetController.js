@@ -14,7 +14,7 @@ exports.getJobModuleRole = async (req, res) => {
 
 exports.registerStudent = async (req, res) => {
   try {
-    const student= new Student({
+    const student = new Student({
       employeename: req.body.employeename,
       emailaddress: req.body.emailaddress,
       employeenumber: req.body.employeenumber,
