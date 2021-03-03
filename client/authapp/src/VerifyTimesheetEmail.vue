@@ -7,7 +7,7 @@
     <form @submit.prevent="notifyStudent">  
       <div class="input-group">
         <label class="input-label" for="message">Message For Student</label>
-        <textarea class="input-btn" id="message" placeholder="Please enter your message" name="message" v-model="emaildetails.studentmessage"></textarea>
+        <textarea class="input-btn" id="message" placeholder="Please enter your message" name="message" v-model="emaildetails.message"></textarea>
       </div>
       <button type="submit" class="submit-btn">Submit Student Message</button>
     </form>
@@ -36,7 +36,7 @@ export default {
       success: false,
       missing: false,
       error: false
-    };
+    }
   },
   methods: {
     async notifyStudent() {
@@ -57,6 +57,11 @@ export default {
           console.log("Success in sending mail");
           this.isInProgress = false;
           this.success = true;
+          let deleteresponse = await this.$http.post("/user/deleterecord");
+          if(deleteresponse)
+          {
+            this.$router.push("/vrtable");
+          }
         }
       } catch(err) {
         console.log(err.response);
@@ -65,6 +70,10 @@ export default {
         {
           console.log("Missing user input");
           this.missing = true;
+        }
+        else if(err.response.data.error == "Missing data")
+        {
+          this.$router.push("/vrtable");
         }
         else
         {

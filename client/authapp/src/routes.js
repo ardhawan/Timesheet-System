@@ -78,7 +78,10 @@ const routes = [
   },
   {
     path: '/vremail',
-    component: VerifyTimesheetEmail
+    component: VerifyTimesheetEmail,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 

@@ -38,7 +38,7 @@
     <p v-if="isUpdateError == true && isSigned == true" class="update-message">Submission error. Please try again.</p>
     <button @click="updateTable" v-if="isSigned == true" class="submit-btn">Submit</button>
     <p v-if="isIncomplete == true" class="text-message">If verify box is not ticked click this button to discuss.</p>
-    <button v-if="isIncomplete == true" class="submit-btn">Email Student</button>
+    <button @click="emailStudent" v-if="isIncomplete == true" class="submit-btn">Email Student</button>
     <p v-if="isRefresh == true" class="error-message">Error in displaying table. Please press the back button and try again.</p>
   </div>
 </template>
@@ -77,6 +77,9 @@ export default {
           console.log("We will show the display button");
         }
       }
+    },
+    emailStudent() {
+      this.$router.push("/vremail");
     },
     async updateTable() {
       try {

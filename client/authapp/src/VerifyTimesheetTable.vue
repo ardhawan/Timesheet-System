@@ -56,7 +56,8 @@ export default {
     this.staffemail = decoded.uname;
     this.isDataMissing = false;
     let detailsresponse = await this.$http.get("/user/getdetails/" + this.staffemail);
-    if (detailsresponse.data.empInfo.length > 0) {
+    console.log(detailsresponse.data);
+    if (detailsresponse.data.empInfo != "") {
       this.timesheetdata = detailsresponse.data.empInfo;
       this.timesheetdata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));
       console.log(this.timesheetdata);

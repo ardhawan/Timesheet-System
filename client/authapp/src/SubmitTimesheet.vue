@@ -177,7 +177,7 @@ export default {
           this.btndisplayname = "Reset Table"
           this.studentinfo.jobrole = "";
           this.studentinfo.jobmodule = "";
-          this.studentinfo.submissiondate = "";
+          this.submissiondate = "";
           this.timesheetinfo = {weekname: "", weekdate: "", weekday: "", workhours: ""};
         }
       }

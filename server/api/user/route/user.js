@@ -23,5 +23,6 @@ router.get("/getdetails/:staffemail", verifyTimesheetController.getStudentDetail
 router.get("/gettable/:employeename/:jobmodule/:jobrole/:submissiondate", verifyTimesheetController.getTableDetails);
 router.post("/updatetable", verifyTimesheetController.updateTable);
 router.post("/notifystudent", verifyTimesheetController.notifyStudent);
+router.post("/deleterecord", verifyTimesheetController.deleteRecord);
 
 module.exports = router;

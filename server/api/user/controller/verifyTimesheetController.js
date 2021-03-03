@@ -1,5 +1,6 @@
 const Staff = require("../model/Staff");
 const Timesheet = require("../model/Timesheet");
+const nodemailer = require('nodemailer');
 var rowInfo = {};
 
 exports.registerStaff = async (req, res) => {
@@ -17,13 +18,11 @@ exports.registerStaff = async (req, res) => {
 };
 
 exports.getStudentDetails = async (req, res) => {
-  // try { 
-  let amInfo = await Staff.find({staffemail: req.params.staffemail}, {assignedmodule:1, _id:0});
-  let empInfo = await Timesheet.find({jobmodule: {$in: amInfo[0].assignedmodule}, status: "Pending"}, {employeename:1, jobmodule:1, jobrole:1, submissiondate:1, _id:0});
+  let empInfo = await Staff.find({staffemail: req.params.staffemail}, {assignedmodule:1, _id:0});
+  if(empInfo != "") {
+    empInfo = await Timesheet.find({jobmodule: {$in: empInfo[0].assignedmodule}, status: "Pending"}, {employeename:1, jobmodule:1, jobrole:1, submissiondate:1, _id:0});
+  }
   res.status(201).json({ empInfo });
-  // } catch (err) {
-  //   res.status(400).json({ error: "No timesheets" });
-  // }
 };
 
 exports.getTableDetails = async (req, res) => {
@@ -40,10 +39,11 @@ exports.getTableDetails = async (req, res) => {
   } catch (err) {
     res.status(400).json({ error: "Error in getting the table data" });
   }
-}
+};
 
 exports.updateTable = async (req, res) => {
   try { 
+    console.log(rowInfo);
     await Timesheet.updateOne(rowInfo, {$set: {status: "Completed"}});
     let checkStatus = await Timesheet.find(rowInfo, {status:1, _id:0});
     console.log(checkStatus)
@@ -54,6 +54,7 @@ exports.updateTable = async (req, res) => {
       let checkRate = await Timesheet.find(rowInfo, {suggestedrate:1, _id:0});
       console.log(checkRate)
     }
+    rowInfo = {};
     res.status(201).json({ message: "Updated status value and suggested rate value" });
   } catch (err) {
     res.status(400).json({ error: "Error in updating"});
@@ -61,16 +62,18 @@ exports.updateTable = async (req, res) => {
 };
 
 exports.notifyStudent = async (req, res) => {
-  console.log("Do we need to notify");
   const senderemail = req.body.senderemail;
   const message = req.body.message;
-  console.log(studentmessage);
+  console.log(message);
   const senderpassword = req.body.senderpassword;
   let receiveremail = await Timesheet.find(rowInfo, {emailaddress:1, _id:0});
   console.log(receiveremail);
 
   if (message == "") {
     return res.status(400).json({error: "Missing user input"});
+  }
+  else if (rowInfo == "") {
+    return res.status(400).json({error: "Missing data"});
   }
 
   let mailTransporter = nodemailer.createTransport({
@@ -88,8 +91,8 @@ exports.notifyStudent = async (req, res) => {
 
   let mailDetails = {
     from: senderemail,
-    to: emailaddress,
-    subject: 'Deadline of the project',
+    to: receiveremail,
+    subject: 'Verfiy timesheet details',
     html: message
   };
     
@@ -105,5 +108,10 @@ exports.notifyStudent = async (req, res) => {
     } 
   });
 };
-  
-  
+
+exports.deleteRecord = async (req, res) => {
+  console.log("Going to delete the timesheet");
+  await Timesheet.deleteOne(rowInfo);
+  rowInfo = {};
+  res.status(200).json({message: "Succesful deletion"});
+};
