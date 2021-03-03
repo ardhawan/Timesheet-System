@@ -69,11 +69,11 @@ exports.notifyStudent = async (req, res) => {
   let receiveremail = await Timesheet.find(rowInfo, {emailaddress:1, _id:0});
   console.log(receiveremail);
 
-  if (message == "") {
-    return res.status(400).json({error: "Missing user input"});
-  }
-  else if (rowInfo == "") {
+  if (rowInfo == "") {
     return res.status(400).json({error: "Missing data"});
+  }
+  else if (message == "") {
+    return res.status(400).json({error: "Missing user input"});
   }
 
   let mailTransporter = nodemailer.createTransport({
