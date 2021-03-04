@@ -7,6 +7,7 @@ const emailStudentController = require("../controller/emailStudentController");
 const emailStaffController = require("../controller/emailStaffController");
 const timesheetController = require("../controller/timesheetController");
 const verifyTimesheetController = require("../controller/verifyTimesheetController");
+const exportController  = require("../controller/exportController");
 
 router.post("/login", userController.loginUser);
 router.post("/register", userController.registerNewUser);
@@ -24,5 +25,7 @@ router.get("/gettable/:employeename/:jobmodule/:jobrole/:submissiondate", verify
 router.post("/updatetable", verifyTimesheetController.updateTable);
 router.post("/notifystudent", verifyTimesheetController.notifyStudent);
 router.post("/deleterecord", verifyTimesheetController.deleteRecord);
+router.get("/getcompleted", exportController.getCompleteDetails);
+router.post("/pdfdocument", exportController.pdfDocument);
 
 module.exports = router;
