@@ -24,12 +24,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(td, index) in timesheetdata" v-bind:key="index">
+        <tr v-for="(ed, index) in employeedata" v-bind:key="index">
           <td>{{index+1}}</td>
-          <td>{{td.employeename}}</td>
-          <td>{{td.jobmodule}}</td>
-          <td>{{td.jobrole}}</td>
-          <td>{{td.submissiondate}}</td>
+          <td>{{ed.employeename}}</td>
+          <td>{{ed.jobmodule}}</td>
+          <td>{{ed.jobrole}}</td>
+          <td>{{ed.submissiondate}}</td>
         </tr>
       </tbody>
     </table>
@@ -49,7 +49,7 @@ export default {
       unformatExportDate: "",
       formatExportDate: "",
       signbox: false,
-      timesheetdata: [],
+      employeedata: [],
       isDataMissing: false,
       isDisplayDate: false
     }
@@ -68,12 +68,12 @@ export default {
   async mounted() {
     this.isDataMissing = false;
     this.isDisplayDate = false;
-    let detailsresponse = await this.$http.get("/user/getcompleted");
-    console.log(detailsresponse.data);
-    if (detailsresponse.data.studentData != "") {
-      this.timesheetdata = detailsresponse.data.studentData
-      this.timesheetdata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));
-      console.log(this.timesheetdata);
+    let completeresponse = await this.$http.get("/user/getcompleted");
+    console.log(completeresponse.data);
+    if (completeresponse.data.studentData != "") {
+      this.employeedata = completeresponse.data.studentData
+      this.employeedata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));
+      console.log(this.employeedata);
       this.isDisplayDate = true;
       console.log("Success in getting the information");
     }
