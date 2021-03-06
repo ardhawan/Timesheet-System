@@ -71,13 +71,13 @@ export default {
 }
 
 .back-btn {
-    color: white;
-    font-size: 2.25rem;
-    position: absolute;
-    right: 0;
-    margin-right: 1.5rem;
-    margin-top: 2rem; 
-    cursor: pointer;
+  color: white;
+  font-size: 2.25rem;
+  position: absolute;
+  right: 0;
+  margin-right: 1.5rem;
+  margin-top: 2rem; 
+  cursor: pointer;
 }
 
 .background-box {

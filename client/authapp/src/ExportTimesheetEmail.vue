@@ -2,6 +2,7 @@
   <div>
     <div class="nav-bar">
       <img src="./assets/logo-white.png">
+      <router-link to='/amdisplay'><p class="back-btn">Back</p></router-link>
     </div>
     <form @submit.prevent="notifyDepartment">  
       <div class="input-group">
@@ -10,10 +11,10 @@
       </div>
       <button type="submit" class="submit-btn">Submit HRD Message</button>
     </form>
-    <p class="message-student" v-if="isInProgress == true">In progress</p>
-    <p class="message-student" v-if="success == true">Succesfully sent message</p>
-    <p class="error-message-student" v-if="missing == true">Missing user input</p>
-    <p class="error-message-student" v-if="error == true">Fail to send message</p>
+    <p class="message-department" v-if="isInProgress == true">In progress</p>
+    <p class="message-department" v-if="success == true">Succesfully sent message</p>
+    <p class="error-message-department" v-if="missing == true">Missing user input</p>
+    <p class="error-message-department" v-if="error == true">Fail to send message</p>
     <div class="down-bar">
       <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
     </div>
@@ -88,6 +89,16 @@ export default {
   margin-bottom: 2rem;
 }
 
+.back-btn {
+  color: white;
+  font-size: 2.25rem;
+  position: absolute;
+  right: 0;
+  margin-right: 1.5rem;
+  margin-top: 2rem; 
+  cursor: pointer;
+}
+
 .input-label {
   display: block;
   margin-top: 2rem;
@@ -129,7 +140,7 @@ export default {
   color: white;
 }
 
-.message-student {
+.message-department {
   position: absolute;
   top: 27%;
   left: 87.5%;
@@ -139,7 +150,7 @@ export default {
   white-space: nowrap;
 }
 
-.error-message-student {
+.error-message-department {
   position: absolute;
   top: 27%;
   left: 87%;

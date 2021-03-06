@@ -5,7 +5,7 @@
       <p @click="logUserOut" class="logout-btn">Logout</p>
     </div>
     <div class="background-box">
-      <router-link to='/expemail' class="routerLink"><button type="submit" class="option-btn">Exporting Timesheets</button></router-link>
+      <router-link to='/exptimesheet' class="routerLink"><button type="submit" class="option-btn">Exporting Timesheets</button></router-link>
       <router-link to='/setdeadline' class="routerLink"><button type="submit" class="option-btn">Set Timesheet Deadline</button></router-link>
       <button type="submit" class="option-btn">View Timesheet Records</button>
     </div>

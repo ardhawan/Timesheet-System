@@ -2,7 +2,7 @@
   <div>
     <div class="nav-bar">
       <img src="./assets/logo-white.png">
-      <router-link to='/stdisplay'><p class="back-btn">Back</p></router-link>
+      <router-link to='/amdisplay'><p class="back-btn">Back</p></router-link>
     </div>
     <div class="input-group">
       <label for="exportdate" class="input-label" v-if="isDisplayDate == true">Today's Date</label>
@@ -59,6 +59,7 @@ export default {
       console.log(documentresponse);
       if(documentresponse != "") {
         console.log("Success in getting the document");
+        this.$router.push("/expemail");
       }
     }
   },

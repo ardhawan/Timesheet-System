@@ -99,7 +99,7 @@ exports.notifyDepartment = async (req, res) => {
  
   let mailDetails = {
     from: senderemail,
-    to: "devikadhawan@hotmail.com",
+    to: "arnavrajdhawan@hotmail.com",
     subject: 'Export Timesheet',
     attachments: [ 
       {  
