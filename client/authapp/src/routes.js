@@ -87,11 +87,17 @@ const routes = [
   },
   {
     path: '/exptimesheet',
-    component:  ExportTimesheet
+    component:  ExportTimesheet,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/expemail',
-    component: ExportTimesheetEmail
+    component: ExportTimesheetEmail,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
