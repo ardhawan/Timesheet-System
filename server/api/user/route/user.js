@@ -27,5 +27,6 @@ router.post("/notifystudent", verifyTimesheetController.notifyStudent);
 router.post("/deleterecord", verifyTimesheetController.deleteRecord);
 router.get("/getcompleted", exportController.getCompleteDetails);
 router.post("/pdfdocument", exportController.pdfDocument);
+router.post("/notifydepartment", exportController.notifyDepartment);
 
 module.exports = router;

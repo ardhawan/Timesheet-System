@@ -11,6 +11,7 @@ import VerifyTimesheetTable from './VerifyTimesheetTable.vue'
 import VerifyTimesheetDetails from './VerifyTimesheetDetails.vue'
 import VerifyTimesheetEmail from './VerifyTimesheetEmail.vue'
 import ExportTimesheet from './ExportTimesheet.vue'
+import ExportTimesheetEmail from './ExportTimesheetEmail.vue'
 
 Vue.use(Router);
 
@@ -87,6 +88,10 @@ const routes = [
   {
     path: '/exptimesheet',
     component:  ExportTimesheet
+  },
+  {
+    path: '/expemail',
+    component: ExportTimesheetEmail
   }
 ];
 

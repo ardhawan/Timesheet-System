@@ -34,9 +34,6 @@
       </tbody>
     </table>
     <p v-if="isDataMissing == true" class="error-message">Currently there are no timesheets that need to be verified.</p>
-    <!-- <div class="down-bar">
-      <p>The University of Dundee is a Scottish Registered Charity, No. SC015096 © University of Dundee</p>
-    </div>  -->
   </div>
 </template>
 
@@ -59,8 +56,8 @@ export default {
       this.formatExportDate = moment(this.unformatExportDate).format("DD-MM-YYYY");
       console.log(this.formatExportDate);
       let documentresponse = await this.$http.post("/user/pdfdocument", {exportdate: this.formatExportDate});
-      console.log(documentresponse.data)
-      if(documentresponse.data != "") {
+      console.log(documentresponse);
+      if(documentresponse != "") {
         console.log("Success in getting the document");
       }
     }
@@ -109,14 +106,6 @@ export default {
   font-size: 2rem;
   color: red;
 }
-
-/* .text-message {
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: blue;
-  margin-top: 0rem;
-  height: 2px;
-} */
 
 .input-group {
   margin-bottom: 1rem;
@@ -202,18 +191,4 @@ th {
   cursor: pointer;
   color: white;
 }
-
-/* .down-bar 
-{
-  background-color:#4365e2;
-  position: fixed; 
-  bottom: 2px;
-  left: 0;
-  right: 0;
-  padding: .5rem 1rem;
-  line-height: 0.25;
-  text-align: center;
-  color: white;
-  font-size: 1.5rem;
-} */
 </style>
