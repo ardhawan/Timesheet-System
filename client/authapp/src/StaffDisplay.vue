@@ -28,6 +28,7 @@ export default {
   methods: {
     logUserOut() {
       localStorage.removeItem("userinfo");
+      localStorage.removeItem("keyinfo");
       localStorage.clear();
       this.$router.push("/login");
       // this.$router.replace();
