@@ -165,7 +165,6 @@ export default {
         let timesheetresponse = await this.$http.post("/system/storeinfo", this.studentinfo);
         if (timesheetresponse) {
           this.isDataStored = true;
-          console.log("Success in saving the timesheet information");
           this.success = false;
           this.signbox= false;
           this.btndisplayname = "Reset Table"
