@@ -9,7 +9,7 @@ const verifyTimesheetController = require("../controller/verifyTimesheetControll
 const exportController  = require("../controller/exportController");
 
 router.post("/login", userController.loginUser);
-router.post("/register", userController.registerNewUser);
+router.post("/register", userController.registerUser);
 router.get("/getstudentd", deadlineController.getStudentDeadline);
 router.get("/getstaffd", deadlineController.getStaffDeadline);
 router.post("/setd", deadlineController.setDeadline);

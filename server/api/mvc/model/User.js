@@ -4,15 +4,15 @@ const jwt = require("jsonwebtoken");
 const userSchema = mongoose.Schema({
   uname: {
     type: String,
-    required: [true, "Please Include your username"]
+    required: [true, "Please Include The Username"]
   },
   role: {
     type: String,
-    required: [true, "Please Include your role"]
+    required: [true, "Please Include The Role"]
   },
   password: {
     type: String,
-    required: [true, "Please Include your password"]
+    required: [true, "Please Include The Password"]
   },
   token: {
     type: String
@@ -27,29 +27,22 @@ userSchema.pre("save", async function(next) {
   next();
 });
 
-//this function generates an auth token for the user
 userSchema.methods.generateAuthToken = async function() {
   const user = this;
-  const token = jwt.sign(
-    { _id: user._id, uname: user.uname, role: user.role },
-    "secret"
-  );
-  // user.tokens = user.tokens.concat({ token });
-  user.token = token;
+  user.token = jwt.sign({ _id: user._id, uname: user.uname, role: user.role },"project")
   await user.save();
-  return token;
 };
 
 userSchema.statics.findByCredentials = async (uname, password) => {
-  const userDetails = await User.findOne({uname});
-  if (!userDetails) {
-    return userDetails;
+  const userInfo = await User.findOne({uname});
+  if (!userInfo) {
+    return null;
   }
-  const isMatch = await bcrypt.compare(password, userDetails.password);
+  const isMatch = await bcrypt.compare(password, userInfo.password);
   if (!isMatch) {
     return null;
   }
-  return userDetails;
+  return userInfo;
 };
 
 const User = mongoose.model("User", userSchema);

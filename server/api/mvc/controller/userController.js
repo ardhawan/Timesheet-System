@@ -14,22 +14,17 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-exports.registerNewUser = async (req, res) => {
-  try {
-    let isUser = await User.find({uname: req.body.uname});
-    console.log(isUser);
-    if (isUser.length >= 1) {
-      return res.status(409).json({message: "Username exists"});
-    }
-    const user = new User({
-      uname: req.body.uname,
-      role: req.body.role,
-      password: req.body.password
-    });
-    let data = await user.save();
-    const token = await user.generateAuthToken();
-    res.status(201).json({ data, token });
-  } catch (err) {
-    res.status(400).json({err: err});
-  }
+exports.registerUser = async (req, res) => {
+  let isUserExist = await User.find({uname: req.body.uname});
+  if (isUserExist.length >= 1) {
+    return res.status(409).json({message: "Username exists"});
+  }   
+  const user = new User({
+    uname: req.body.uname,
+    role: req.body.role,
+    password: req.body.password
+  });
+  await user.save();
+  await user.generateAuthToken();
+  res.status(201).json({message: "Successfully register the user"});
 };  
