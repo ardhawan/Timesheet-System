@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(morgan("dev")); 
 
-const systemRoutes = require("./api/user/route/system");
+const systemRoutes = require("./api/mvc/route/system");
 app.use("/system", systemRoutes);
 
 app.listen(PORT, () => {

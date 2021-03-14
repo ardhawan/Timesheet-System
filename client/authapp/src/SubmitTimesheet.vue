@@ -162,7 +162,7 @@ export default {
       this.isTopRowMissing = false;
       try {
         this.studentinfo.submissiondate = moment(this.submissiondate).format("DD-MM-YYYY");
-        let timesheetresponse = await this.$http.post("/user/storeinfo", this.studentinfo);
+        let timesheetresponse = await this.$http.post("/system/storeinfo", this.studentinfo);
         if (timesheetresponse) {
           this.isDataStored = true;
           console.log("Success in saving the timesheet information");
@@ -187,7 +187,7 @@ export default {
       let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
       this.studentinfo.emailaddress = decoded.uname;
-      let optionresponse = await this.$http.get("/user/getinfo/" + this.studentinfo.emailaddress);
+      let optionresponse = await this.$http.get("/system/getinfo/" + this.studentinfo.emailaddress);
       if(optionresponse) {
         this.jobrole = optionresponse.data.mjInfo[0].jobrole;
         this.jobmodule = optionresponse.data.mjInfo[0].jobmodule;
