@@ -70,7 +70,7 @@ export default {
       let userPassword = localStorage.getItem("keyinfo")
       this.studentdetails.password = userPassword;
       try {
-        let emailresponse = await this.$http.post("/user/sendstudentm", this.studentdetails);
+        let emailresponse = await this.$http.post("/system/sendstudentm", this.studentdetails);
         if (emailresponse) {
           this.isInProgress = false;
           this.success = true;
@@ -99,7 +99,7 @@ export default {
       let userPassword = localStorage.getItem("keyinfo")
       this.staffdetails.password = userPassword;
       try {
-        let sfemailresponse = await this.$http.post("/user/sendstaffm", this.staffdetails);
+        let sfemailresponse = await this.$http.post("/system/sendstaffm", this.staffdetails);
         if (sfemailresponse) {
           this.isInProgressStaff = false;
           this.sfsuccess = true;

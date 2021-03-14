@@ -14,22 +14,12 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, "Please Include your password"]
   },
-  // tokens: [
-  //   {
-  //     token: {
-  //       type: String,
-  //       required: true
-  //     }
-  //   }
-  // ]
   token: {
     type: String
-    // required: true
   }
 });
 
 userSchema.pre("save", async function(next) {
-  // Hash the password before saving the user model
   const user = this;
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
@@ -50,22 +40,16 @@ userSchema.methods.generateAuthToken = async function() {
   return token;
 };
 
-//this method search for a user by email and password.
 userSchema.statics.findByCredentials = async (uname, password) => {
-  const user = await User.findOne({ uname });
-  console.log(user);
-  if (!user) {
-    console.log("Please produce an error");
-    // throw new Error({ error: "Invalid login details" });
-    return user;
+  const userDetails = await User.findOne({uname});
+  if (!userDetails) {
+    return userDetails;
   }
-  const isPasswordMatch = await bcrypt.compare(password, user.password);
-  if (!isPasswordMatch) {
-    console.log("We have hit here");
-    // throw new Error({ error: "Invalid login details" });
+  const isMatch = await bcrypt.compare(password, userDetailspassword);
+  if (!isMatch) {
     return null;
   }
-  return user;
+  return userDetails;
 };
 
 const User = mongoose.model("User", userSchema);

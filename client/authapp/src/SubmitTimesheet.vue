@@ -131,8 +131,7 @@ export default {
       this.error = false;
       this.isDataStored = false;
       this.isTopRowMissing = false;
-      if(this.btndisplayname == "Reset Table")
-      {
+      if(this.btndisplayname == "Reset Table") {
         this.studentinfo.tabledata = [];
         this.totalhours = 0;
         this.isHourDisplayed = false;
@@ -140,13 +139,11 @@ export default {
         this.coloumnList = [];
         this.btndisplayname = "Add More Records";
       }
-      else if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "")
-      {
+      else if(this.timesheetinfo.weekname == "" || this.timesheetinfo.weekdate == "" || this.timesheetinfo.weekday == "" || this.timesheetinfo.workhours == "") {
         this.error = true;
       }
-      else{
-        if(!this.isColInitialized)
-        {
+      else {
+        if(!this.isColInitialized) {
           this.coloumnList = ['Number', 'Week', 'Week Date', 'Week Day', 'Work Hours'];
           this.success = true;
           this.isColInitialized = true;
@@ -191,8 +188,10 @@ export default {
       let decoded = VueJwtDecode.decode(token);
       this.studentinfo.emailaddress = decoded.uname;
       let optionresponse = await this.$http.get("/user/getinfo/" + this.studentinfo.emailaddress);
-      this.jobrole = optionresponse.data.mjInfo[0].jobrole;
-      this.jobmodule = optionresponse.data.mjInfo[0].jobmodule;
+      if(optionresponse) {
+        this.jobrole = optionresponse.data.mjInfo[0].jobrole;
+        this.jobmodule = optionresponse.data.mjInfo[0].jobmodule;
+      }
     } catch (err) {
       console.log(err.response);
     }

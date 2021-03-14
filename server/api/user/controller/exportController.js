@@ -5,15 +5,12 @@ var fs = require('fs');
 
 exports.getCompleteDetails = async (req, res) => {
   let studentData = await Timesheet.find({status: "Completed"}, {employeename:1, jobmodule:1, jobrole:1, submissiondate:1, _id:0});
-  console.log(studentData);
-  res.status(201).json({ studentData });
+  res.status(201).json({studentData});
 };
 
 exports.pdfDocument = async (req, res) => {
   let completeData = await Timesheet.find({status: "Completed"}, {employeename:1, emailaddress:1, employeenumber:1, department:1, jobmodule:1, jobrole:1, submissiondate:1, suggestedrate:1, tabledata:1,  _id:0});
-  console.log(completeData);
   exportdate = req.body.exportdate;
-  console.log(exportdate);
 
   var timesheetDocument = new pdf;
   timesheetDocument.pipe(fs.createWriteStream('timesheet.pdf'));
@@ -77,7 +74,6 @@ exports.pdfDocument = async (req, res) => {
 exports.notifyDepartment = async (req, res) => {
   const senderemail = req.body.senderemail;
   const message = req.body.message;
-  console.log(message);
   const senderpassword = req.body.senderpassword;
 
   if (message == "") {
@@ -85,9 +81,9 @@ exports.notifyDepartment = async (req, res) => {
   }
 
   let mailTransporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com", // hostname
-    secureConnection: false, // TLS requires secureConnection to be false
-    port: 587, // port for secure SMTP
+    host: "smtp-mail.outlook.com", 
+    secureConnection: false,
+    port: 587,
     tls: {
       ciphers:'SSLv3'
     },
@@ -112,7 +108,6 @@ exports.notifyDepartment = async (req, res) => {
     
   mailTransporter.sendMail(mailDetails, function(err, info) { 
     if(err) { 
-      console.log("Department Error");
       console.log(err.responseCode);
       res.status(err.responseCode).json({error: "Fail to send message"});
     } 

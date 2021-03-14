@@ -4,28 +4,22 @@ exports.loginUser = async (req, res) => {
   try {
     const uname = req.body.uname;
     const password = req.body.password;
-    const user = await User.findByCredentials(uname, password);
-    console.log(user);
-    if (!user) {
-      return res
-        .status(401)
-        .json({ error: "Login failed! Check authentication credentials" });
-    }
-    // const token = await user.generateAuthToken();
-    res.status(201).json({ user });
+    const userInfo = await User.findByCredentials(uname, password);
+    if (!userInfo) {
+      return res.status(401).json({error: "Authentication failed"});
+    } 
+    res.status(201).json({userInfo});
   } catch (err) {
-    res.status(400).json({ err: err });
+    res.status(400).json({err: err});
   }
 };
 
 exports.registerNewUser = async (req, res) => {
   try {
-    let isUser = await User.find({ uname: req.body.uname });
+    let isUser = await User.find({uname: req.body.uname});
     console.log(isUser);
     if (isUser.length >= 1) {
-      return res.status(409).json({
-        message: "username already in use"
-      });
+      return res.status(409).json({message: "Username exists"});
     }
     const user = new User({
       uname: req.body.uname,
@@ -33,9 +27,9 @@ exports.registerNewUser = async (req, res) => {
       password: req.body.password
     });
     let data = await user.save();
-    const token = await user.generateAuthToken(); // here it is calling the method that we created in the model
+    const token = await user.generateAuthToken();
     res.status(201).json({ data, token });
   } catch (err) {
-    res.status(400).json({ err: err });
+    res.status(400).json({err: err});
   }
 };  

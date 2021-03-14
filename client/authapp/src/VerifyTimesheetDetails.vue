@@ -82,7 +82,7 @@ export default {
     },
     async updateTable() {
       try {
-        let updateresponse = await this.$http.post("/user/updatetable", {suggestedrate: this.suggestedrate});
+        let updateresponse = await this.$http.post("/system/updatetable", {suggestedrate: this.suggestedrate});
         if(updateresponse) {
           this.$router.push("/vrtable")
         }
@@ -97,7 +97,7 @@ export default {
   async mounted() {
     this.displaydata.push(this.$route.params.displaydata);
     try {
-      let tableresponse = await this.$http.get("/user/gettable/" + this.displaydata[0].employeename + "/" + this.displaydata[0].jobmodule + "/" + this.displaydata[0].jobrole + "/" + this.displaydata[0].submissiondate);
+      let tableresponse = await this.$http.get("/system/gettable/" + this.displaydata[0].employeename + "/" + this.displaydata[0].jobmodule + "/" + this.displaydata[0].jobrole + "/" + this.displaydata[0].submissiondate);
       if(tableresponse) {
         this.hourstable = tableresponse.data.tableInfo[0].tabledata;
       }

@@ -54,7 +54,7 @@ export default {
   methods: {
     async pdfDocument() {
       this.formatExportDate = moment(this.unformatExportDate).format("DD-MM-YYYY");
-      let documentresponse = await this.$http.post("/user/pdfdocument", {exportdate: this.formatExportDate});
+      let documentresponse = await this.$http.post("/system/pdfdocument", {exportdate: this.formatExportDate});
       if(documentresponse != "") {
         this.$router.push("/expemail");
       }
@@ -63,7 +63,7 @@ export default {
   async mounted() {
     this.isDataMissing = false;
     this.isDisplayDate = false;
-    let completeresponse = await this.$http.get("/user/getcompleted");
+    let completeresponse = await this.$http.get("/system/getcompleted");
     if (completeresponse.data.studentData != "") {
       this.employeedata = completeresponse.data.studentData
       this.employeedata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));

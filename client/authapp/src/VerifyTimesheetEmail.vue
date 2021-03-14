@@ -49,11 +49,11 @@ export default {
       let userPassword = localStorage.getItem("keyinfo")
       this.emaildetails.senderpassword = userPassword;
       try {
-        let notifyresponse = await this.$http.post("/user/notifystudent", this.emaildetails);
+        let notifyresponse = await this.$http.post("/system/notifystudent", this.emaildetails);
         if (notifyresponse) {
           this.isInProgress = false;
           this.success = true;
-          let deleteresponse = await this.$http.post("/user/deleterecord");
+          let deleteresponse = await this.$http.post("/system/deleterecord");
           if(deleteresponse)
           {
             this.$router.push("/vrtable");

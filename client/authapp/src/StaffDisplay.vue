@@ -35,7 +35,7 @@ export default {
   },
   async mounted() {
     try{
-      let dateresponse = await this.$http.get("/user/getstaffd");
+      let dateresponse = await this.$http.get("/system/getstaffd");
       if(dateresponse) {
         let unformatDate = dateresponse.data.tcDeadline[0].staffdeadline;
         this.date = moment(unformatDate).format("DD-MM-YYYY");

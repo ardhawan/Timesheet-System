@@ -54,7 +54,7 @@ export default {
     let decoded = VueJwtDecode.decode(token);
     this.staffemail = decoded.uname;
     this.isDataMissing = false;
-    let detailsresponse = await this.$http.get("/user/getdetails/" + this.staffemail);
+    let detailsresponse = await this.$http.get("/system/getdetails/" + this.staffemail);
     if (detailsresponse.data.empInfo != "") {
       this.timesheetdata = detailsresponse.data.empInfo;
       this.timesheetdata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));

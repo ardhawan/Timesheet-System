@@ -50,7 +50,7 @@ export default {
       let userPassword = localStorage.getItem("keyinfo")
       this.senderdetails.senderpassword = userPassword;
       try {
-        let submitresponse = await this.$http.post("/user/notifydepartment", this.senderdetails);
+        let submitresponse = await this.$http.post("/system/notifydepartment", this.senderdetails);
         if (submitresponse) {
           this.isInProgress = false;
           this.success = true;

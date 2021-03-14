@@ -4,11 +4,9 @@ const Timesheet  = require("../model/Timesheet");
 exports.getJobModuleRole = async (req, res) => {
   try {
     let mjInfo = await Student.find({emailaddress: req.params.emailaddress}, {jobrole:1, jobmodule:1, _id:0});
-    console.log(mjInfo);
-    console.log("Success we found the information");
-    res.status(201).json({ mjInfo });
+    res.status(201).json({mjInfo});
   } catch (err) {
-    res.status(400).json({ err: err });
+    res.status(400).json({err: err});
   }
 }; 
 
@@ -23,9 +21,9 @@ exports.registerStudent = async (req, res) => {
       jobmodule: req.body.jobmodule
     });
     let stdata = await student.save();
-    res.status(201).json({ stdata });
+    res.status(201).json({stdata});
   } catch (err) {
-    res.status(400).json({ err: err });
+    res.status(400).json({err: err});
   }
 };
 
@@ -46,13 +44,12 @@ exports.storeTimesheetInfo = async (req, res) => {
     });
 
     if (timesheet.submissiondate == ""|| timesheet.jobrole == "" || timesheet.jobmodule == "") {
-    return res.status(400).json({
-      error: "Missing user input"});
+      return res.status(400).json({error: "Missing user input"});
     }
 
     let timesheetDetails = await timesheet.save();
     res.status(201).json({timesheetDetails});
   } catch (err) {
-    res.status(400).json({ err: err });
+    res.status(400).json({err: err});
   }
 };

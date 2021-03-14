@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
 const deadlineSchema = new mongoose.Schema({
   studentdeadline: {
     type: String,

@@ -42,7 +42,7 @@ export default {
   methods: {
     async loginUser() {
       try {
-        let response = await this.$http.post("/user/login", this.login);
+        let response = await this.$http.post("/system/login", this.login);
         let token = response.data.user.token;
         if (token) {
           let decoded = VueJwtDecode.decode(token);

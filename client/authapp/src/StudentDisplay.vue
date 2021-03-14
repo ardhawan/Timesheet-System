@@ -34,7 +34,7 @@ export default {
   },
   async mounted() {
     try{
-      let dateresponse = await this.$http.get("/user/getstudentd");
+      let dateresponse = await this.$http.get("/system/getstudentd");
       if(dateresponse) {
         let unformatDate = dateresponse.data.stDeadline[0].studentdeadline;
         this.date = moment(unformatDate).format("DD-MM-YYYY");

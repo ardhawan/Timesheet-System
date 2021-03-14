@@ -4,19 +4,17 @@ const nodemailer = require('nodemailer');
 exports.sendStaffEmail = async (req, res) => {
   const senderemail = req.body.senderemail;
   const staffmessage = req.body.staffmessage;
-  console.log(staffmessage);
   const password = req.body.password;
   let staffList = await User.find({role:"staff"}, {uname:1, _id:0});
-  console.log(staffList);
 
   if (staffmessage == "") {
     return res.status(400).json({error: "Missing user input"});
   }
 
   let mailTransporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com", // hostname
-    secureConnection: false, // TLS requires secureConnection to be false
-    port: 587, // port for secure SMTP
+    host: "smtp-mail.outlook.com",
+    secureConnection: false,
+    port: 587,
     tls: {
       ciphers:'SSLv3'
     },
@@ -42,7 +40,6 @@ exports.sendStaffEmail = async (req, res) => {
 
   mailTransporter.sendMail(mailDetails, function(err, info) { 
     if(err) { 
-      console.log("Staff Error");
       console.log(err.responseCode);
       res.status(err.responseCode).json({error: "Fail to send message"});
     } 

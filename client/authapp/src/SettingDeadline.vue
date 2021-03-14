@@ -41,7 +41,7 @@ export default {
   methods: {
     async setDeadline() {
       try {
-        let deadlineresponse = await this.$http.post("/user/setd", this.details);
+        let deadlineresponse = await this.$http.post("/system/setd", this.details);
         if (deadlineresponse) {
           this.missing = false;
           this.$router.push("/dlemail");
