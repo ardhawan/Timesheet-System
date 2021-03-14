@@ -74,7 +74,6 @@ export default {
         if(this.rowSelected.length == this.hourstable.length) {
           this.isIncomplete = false;
           this.isVerify = true;
-          console.log("We will show the display button");
         }
       }
     },
@@ -85,33 +84,28 @@ export default {
       try {
         let updateresponse = await this.$http.post("/user/updatetable", {suggestedrate: this.suggestedrate});
         if(updateresponse) {
-          console.log("The timesheet has been verified");
           this.$router.push("/vrtable")
         }
       } 
       catch(err) {
         this.isUpdateError = true;
         this.suggestedrate = "";
-        console.log("There was an error in updating");
         console.log(err.response);
       } 
     }
   },
   async mounted() {
     this.displaydata.push(this.$route.params.displaydata);
-    console.log(this.displaydata)
     try {
       let tableresponse = await this.$http.get("/user/gettable/" + this.displaydata[0].employeename + "/" + this.displaydata[0].jobmodule + "/" + this.displaydata[0].jobrole + "/" + this.displaydata[0].submissiondate);
-      this.hourstable = tableresponse.data.tableInfo[0].tabledata;
       if(tableresponse) {
-        console.log("We got the table data")
+        this.hourstable = tableresponse.data.tableInfo[0].tabledata;
       }
     } 
     catch(err) {
       this.isIncomplete = false;
       this.isRefresh = true;
       console.log("We did not get the table data");
-      // console.log(err.response);
     }
   }
 };

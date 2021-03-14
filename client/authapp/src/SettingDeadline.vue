@@ -40,20 +40,13 @@ export default {
   },
   methods: {
     async setDeadline() {
-      console.log("Are we here");
       try {
-        // console.log(this.login);
         let deadlineresponse = await this.$http.post("/user/setd", this.details);
-        // let token = response.data.user.token;
-        console.log(deadlineresponse.data.userdl.studentdeadline);
-        console.log(deadlineresponse.data.userdl.staffdeadline);
         if (deadlineresponse) {
-          console.log("Success in setting deadline");
           this.missing = false;
           this.$router.push("/dlemail");
         }
       } catch (err) {
-        console.log("Error in setting deadline");
         this.missing = true;
         console.log(err.response);
       }

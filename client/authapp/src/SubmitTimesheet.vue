@@ -145,7 +145,6 @@ export default {
         this.error = true;
       }
       else{
-        // this.emptytable = false;
         if(!this.isColInitialized)
         {
           this.coloumnList = ['Number', 'Week', 'Week Date', 'Week Day', 'Work Hours'];
@@ -157,9 +156,7 @@ export default {
         this.studentinfo.tabledata.push({weekname:this.timesheetinfo.weekname, weekdate:this.timesheetinfo.weekdate, weekday:this.timesheetinfo.weekday, workhours:this.timesheetinfo.workhours});
         this.totalhours = Number(this.totalhours) + Number(this.timesheetinfo.workhours);
         this.timesheetinfo = {weekname:"", weekdate:"", weekday: "", workhours:""};
-        // this.studeninfo.tabledata.sort((a, b) => a.name.localeCompare(b.name));
         this.studentinfo.tabledata.sort((a, b) => a.weekdate.localeCompare(b.weekdate));
-        console.log(this.studentinfo.tabledata);
       }
     },
     async storeTimesheetInfo() {
@@ -183,25 +180,21 @@ export default {
       }
       catch(err) {
         this.isTopRowMissing = true;
-        console.log("There was an error saving the timesheet information");
         console.log(err.response);
       }
     }
   },
   async mounted() {
-    console.log("We have come here");
     this.btndisplayname = "Add More Records"
     try{
       let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
       this.studentinfo.emailaddress = decoded.uname;
       let optionresponse = await this.$http.get("/user/getinfo/" + this.studentinfo.emailaddress);
-      // console.log(optionresponse.data.mjInfo[0].jobrole);
       this.jobrole = optionresponse.data.mjInfo[0].jobrole;
       this.jobmodule = optionresponse.data.mjInfo[0].jobmodule;
-      console.log("We have got the information");
     } catch (err) {
-      console.log("Error in showing information");
+      console.log(err.response);
     }
   },
 };

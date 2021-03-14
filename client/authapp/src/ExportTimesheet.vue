@@ -54,11 +54,8 @@ export default {
   methods: {
     async pdfDocument() {
       this.formatExportDate = moment(this.unformatExportDate).format("DD-MM-YYYY");
-      console.log(this.formatExportDate);
       let documentresponse = await this.$http.post("/user/pdfdocument", {exportdate: this.formatExportDate});
-      console.log(documentresponse);
       if(documentresponse != "") {
-        console.log("Success in getting the document");
         this.$router.push("/expemail");
       }
     }
@@ -67,17 +64,13 @@ export default {
     this.isDataMissing = false;
     this.isDisplayDate = false;
     let completeresponse = await this.$http.get("/user/getcompleted");
-    console.log(completeresponse.data);
     if (completeresponse.data.studentData != "") {
       this.employeedata = completeresponse.data.studentData
       this.employeedata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));
-      console.log(this.employeedata);
       this.isDisplayDate = true;
-      console.log("Success in getting the information");
     }
     else {
       this.isDataMissing = true;
-      console.log("Error in retrieving timesheet");
     }
   }
 };

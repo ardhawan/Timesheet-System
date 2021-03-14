@@ -24,8 +24,6 @@ export default {
       localStorage.removeItem("keyinfo");
       localStorage.clear();
       this.$router.push("/login");
-      // this.$router.replace();
-      console.log("We have signed out of the system");
     }
   }
 }

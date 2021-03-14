@@ -66,16 +66,12 @@ export default {
       this.isInProgress = true;
       let token = localStorage.getItem("userinfo");
       let decoded = VueJwtDecode.decode(token);
-      let userEmail = decoded.uname;
-      this.studentdetails.senderemail = userEmail;
-      console.log(this.studentdetails.senderemail);
+      this.studentdetails.senderemail = decoded.uname;
       let userPassword = localStorage.getItem("keyinfo")
       this.studentdetails.password = userPassword;
       try {
         let emailresponse = await this.$http.post("/user/sendstudentm", this.studentdetails);
-        console.log(emailresponse);
         if (emailresponse) {
-          console.log("Success in sending mail");
           this.isInProgress = false;
           this.success = true;
         }
@@ -84,12 +80,10 @@ export default {
         this.isInProgress = false;
         if(err.response.data.error == "Missing user input")
         {
-          console.log("Missing user input");
           this.missing = true;
         }
         else
         {
-          console.log("Error in sending mail");
           this.error = true;
         }
       }
@@ -101,16 +95,12 @@ export default {
       this.isInProgressStaff = true;
       let token = localStorage.getItem("userinfo")
       let decoded = VueJwtDecode.decode(token);
-      let userEmail = decoded.uname;
-      this.staffdetails.senderemail = userEmail;
-      console.log(this.staffdetails.senderemail);
+      this.staffdetails.senderemail = decoded.uname;
       let userPassword = localStorage.getItem("keyinfo")
       this.staffdetails.password = userPassword;
       try {
         let sfemailresponse = await this.$http.post("/user/sendstaffm", this.staffdetails);
-        console.log(sfemailresponse);
         if (sfemailresponse) {
-          console.log("Success in sending mail");
           this.isInProgressStaff = false;
           this.sfsuccess = true;
         }
@@ -119,12 +109,10 @@ export default {
         this.isInProgressStaff = false;
         if(err.response.data.error == "Missing user input")
         {
-          console.log("Missing user input");
           this.sfmissing = true;
         }
         else
         {
-          console.log("Error in sending mail");
           this.sferror = true;
         }
       }

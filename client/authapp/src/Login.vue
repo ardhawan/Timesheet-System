@@ -14,8 +14,6 @@
           <label class="input-label" for="Password">Computing Password</label>
           <input type="password" class="input-btn" id="Password" placeholder="Enter Password" name="password" v-model="login.password">
         </div>
-      <!-- <router-link to='/studentdisplay'>Login</router-link> -->
-      <!-- <form v-on:submit.prevent="loginUser"> -->
         <button type="submit" class="submit-btn">Login</button>
       </form>
     </div>
@@ -43,41 +41,31 @@ export default {
   },
   methods: {
     async loginUser() {
-      console.log("Hello");
       try {
-        // console.log(this.login);
         let response = await this.$http.post("/user/login", this.login);
-        // console.log(response);
         let token = response.data.user.token;
-        console.log(response.data.user.token);
         if (token) {
           let decoded = VueJwtDecode.decode(token);
           let userRole = decoded.role;
-          console.log(userRole);
           localStorage.setItem("userinfo", token);
           this.error = false;
           if(userRole == "student")
           {
-            console.log("We are in the student portal");
             this.$router.push("/sdisplay");
           }
           else if(userRole == "staff")
           {
-            console.log("We are in the staff portal");
             localStorage.setItem("keyinfo", this.login.password);
             this.$router.push("/stdisplay");
           }
           else if(userRole == "admin")
           {
-            console.log("We are in the admin portal");
             localStorage.setItem("keyinfo", this.login.password);
             this.$router.push("/amdisplay");
           }
         }
       } catch (err) {
-        console.log("We are out");
         this.error = true;
-        // swal("Error", "Something Went Wrong", "error");
         console.log(err.response);
       }
     }

@@ -15,7 +15,6 @@ import ExportTimesheetEmail from './ExportTimesheetEmail.vue'
 
 Vue.use(Router);
 
-// export default new Router({
 const routes = [
   {
     path: '/login',
@@ -102,23 +101,21 @@ const routes = [
 ];
 
 const router = new Router({
-    // mode: "history",
-    // base: process.env.BASE_URL,
-    routes
+  routes
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-      if (localStorage.getItem("userinfo") == null) {
-        next({
-          path: "/login"
-        });
-      } else {
-        next();
-      }
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (localStorage.getItem("userinfo") == null) {
+      next({
+        path: "/login"
+      });
     } else {
       next();
     }
+  } else {
+    next();
+  }
 });
 
 export default router;

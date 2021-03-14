@@ -46,8 +46,7 @@ export default {
   },
   methods: {
     detailsLink(index) {
-      console.log("We clicked the link");
-      this.$router.push({ name: 'VerifyTimsheetDetails', params: {displaydata: this.timesheetdata[index]}});
+      this.$router.push({name: 'VerifyTimsheetDetails', params: {displaydata: this.timesheetdata[index]}});
     }  
   },
   async mounted() {
@@ -56,16 +55,12 @@ export default {
     this.staffemail = decoded.uname;
     this.isDataMissing = false;
     let detailsresponse = await this.$http.get("/user/getdetails/" + this.staffemail);
-    console.log(detailsresponse.data);
     if (detailsresponse.data.empInfo != "") {
       this.timesheetdata = detailsresponse.data.empInfo;
       this.timesheetdata.sort((a, b) => a.submissiondate.localeCompare(b.submissiondate));
-      console.log(this.timesheetdata);
-      console.log("Success in getting the information");
     }
     else {
       this.isDataMissing = true;
-      console.log("There was an error in retrieving the timesheet information");
     }
   }
 };

@@ -47,14 +47,11 @@ export default {
       let token = localStorage.getItem("userinfo");
       let decoded = VueJwtDecode.decode(token);
       this.senderdetails.senderemail = decoded.uname;
-      console.log(this.senderdetails.senderemail);
       let userPassword = localStorage.getItem("keyinfo")
       this.senderdetails.senderpassword = userPassword;
       try {
         let submitresponse = await this.$http.post("/user/notifydepartment", this.senderdetails);
-        console.log(submitresponse);
         if (submitresponse) {
-          console.log("Success in sending mail");
           this.isInProgress = false;
           this.success = true;
         }
@@ -63,12 +60,10 @@ export default {
         this.isInProgress = false;
         if(err.response.data.error == "Missing user input")
         {
-          console.log("Missing user input");
           this.missing = true;
         }
         else
         {
-          console.log("Error in sending mail");
           this.error = true;
         }
       }

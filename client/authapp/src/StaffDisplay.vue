@@ -31,21 +31,17 @@ export default {
       localStorage.removeItem("keyinfo");
       localStorage.clear();
       this.$router.push("/login");
-      // this.$router.replace();
-      console.log("We have signed out of the system");
     }
   },
   async mounted() {
-    console.log("We have come here");
     try{
       let dateresponse = await this.$http.get("/user/getstaffd");
-      console.log(dateresponse.data.tcDeadline[0].staffdeadline);
-      let unformatDate = dateresponse.data.tcDeadline[0].staffdeadline;
-      this.date = moment(unformatDate).format("DD-MM-YYYY");
-      // console.log(test[0].Deadline);
-      console.log("We have got the date from the database");
+      if(dateresponse) {
+        let unformatDate = dateresponse.data.tcDeadline[0].staffdeadline;
+        this.date = moment(unformatDate).format("DD-MM-YYYY");
+      }
     } catch (err) {
-      console.log("Error in showing deadline");
+      console.log(err.response);
     }
   },
 }
