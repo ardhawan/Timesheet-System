@@ -7,11 +7,11 @@
       <h1 class ="title">Timesheet Management System</h1>  
       <form @submit.prevent="loginUser">  
         <div class="input-group">
-          <label class="input-label" for="Username">Computing Username</label>
+          <label class="input-label" for="Useranme">Username</label>
           <input type="username" class="input-btn" id="Username" placeholder="Enter Username" name="username" v-model="login.uname">
         </div>
         <div class="input-group">
-          <label class="input-label" for="Password">Computing Password</label>
+          <label class="input-label" for="Password">Password</label>
           <input type="password" class="input-btn" id="Password" placeholder="Enter Password" name="password" v-model="login.password">
         </div>
         <button type="submit" class="submit-btn">Login</button>
