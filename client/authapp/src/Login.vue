@@ -7,7 +7,7 @@
       <h1 class ="title">Timesheet Management System</h1>  
       <form @submit.prevent="loginUser">  
         <div class="input-group">
-          <label class="input-label" for="Useranme">Username</label>
+          <label class="input-label" for="Username">Username</label>
           <input type="username" class="input-btn" id="Username" placeholder="Enter Username" name="username" v-model="login.uname">
         </div>
         <div class="input-group">
