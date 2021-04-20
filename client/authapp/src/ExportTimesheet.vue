@@ -33,7 +33,7 @@
         </tr>
       </tbody>
     </table>
-    <p v-if="isDataMissing == true" class="error-message">Currently there are no timesheets that need to be verified.</p>
+    <p v-if="isDataMissing == true" class="error-message">Currently there are no timesheets that need to be exported.</p>
   </div>
 </template>
 
