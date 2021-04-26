@@ -117,3 +117,8 @@ exports.notifyDepartment = async (req, res) => {
     } 
   });
 };
+
+exports.deleteComplete = async (req, res) => {
+  await Timesheet.deleteMany({status: "Completed"});
+  res.status(200).json({message: "Succesful deletion"});
+};

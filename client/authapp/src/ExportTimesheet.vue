@@ -56,7 +56,11 @@ export default {
       this.formatExportDate = moment(this.unformatExportDate).format("DD-MM-YYYY");
       let documentresponse = await this.$http.post("/system/pdfdocument", {exportdate: this.formatExportDate});
       if(documentresponse != "") {
-        this.$router.push("/expemail");
+        let deletecompresponse = await this.$http.post("/system/deletecomplete");
+        if(deletecompresponse != "")
+        {
+          this.$router.push("/expemail");
+        }
       }
     }
   },
